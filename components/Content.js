@@ -37,7 +37,7 @@ const Content = ({ content, color = "#fff", fontSize = 1, countdownTime = 200000
     backgroundColor: "transparent",
     textTransform: 'capitalize',
     borderRadius: "0px",
-    border: `3px solid ${textColor}`,
+    border: `3.5px solid ${textColor}`,
     boxSizing: "border-box",
     fontSize: '1.1em',
     transition: '0.2s',
@@ -50,7 +50,7 @@ const Content = ({ content, color = "#fff", fontSize = 1, countdownTime = 200000
   }));
   return (
     <ContentWrapper>
-      <Text color={color} fontSize={"4em"} weight={"700"}>
+      <Text color={color} fontSize={"2em"} weight={"700"}>
         {content.logo}
       </Text>
       <MyCountdown
@@ -59,10 +59,10 @@ const Content = ({ content, color = "#fff", fontSize = 1, countdownTime = 200000
         weight="bold"
         color={color}
       />
-      <Text color={color} fontSize={"3em"} weight={"700"}>
+      <Text color={color} fontSize={"4em"} weight={"700"}>
         {content.title1}
       </Text>
-      <Text color={color} fontSize={"3em"} weight={"700"}>
+      <Text color={color} fontSize={"4em"} weight={"700"}>
         {content.title2}
       </Text>
       <Text color={color} fontSize={"1.2em"} weight={"500"}>{content.reminder1}</Text>

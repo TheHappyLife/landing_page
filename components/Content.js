@@ -51,7 +51,7 @@ const Content = ({ content, color = "#fff", fontSize = 1, countdownTime = 200000
   return (
     <ContentWrapper>
       <Text color={color} fontSize={"2em"} weight={"700"}>
-        {content.logo}
+        <a href={'https://landing-page-beige-two.vercel.app/'}>{content.logo}</a>
       </Text>
       <MyCountdown
         mSeconds={countdownTime}

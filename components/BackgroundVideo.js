@@ -17,7 +17,6 @@ const Video = styled("video")(() => ({
   transform: "translate3d(-50%, -50%, 0)",
 }));
 
-
 const setVideoSize = () => {
   console.log("resized");
   const body = document.querySelector("body");
@@ -32,12 +31,14 @@ const setVideoSize = () => {
   }
 };
 const enableSound = () => {
-  document.querySelector('video').muted = false;
+  console.log('>>>enable sound');
+  document.querySelector('video').muted = !(document.querySelector('video').muted);
 }
 const innitEventsFunction = () => {
     console.log('loaded');
     setVideoSize();
-    enableSound();
+    document.querySelector('video').muted = false;
+    document.querySelector('button').addEventListener('click', enableSound);
     window.addEventListener("resize", setVideoSize);
 };
 const BackgroundVideo = ({ link, ...videoProps }) => {

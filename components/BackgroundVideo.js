@@ -30,15 +30,15 @@ const setVideoSize = () => {
     video.style.height = "100vh";
   }
 };
-const enableSound = () => {
+const toggleSoundStatus = () => {
   console.log('>>>enable sound');
   document.querySelector('video').muted = !(document.querySelector('video').muted);
 }
 const innitEventsFunction = () => {
     console.log('loaded');
     setVideoSize();
-    document.querySelector('video').muted = false;
-    document.querySelector('button').addEventListener('click', enableSound);
+    // document.querySelector('video').muted = false;
+    document.querySelector('button').addEventListener('click', toggleSoundStatus);
     window.addEventListener("resize", setVideoSize);
 };
 const BackgroundVideo = ({ link, ...videoProps }) => {

@@ -5,7 +5,8 @@ const Text = ({ color = "fff", fontSize = "2em", weight = "normal", margin = '0'
           color: color,
           fontSize: fontSize,
           fontWeight: weight,
-          margin: margin
+          margin: margin,
+          textShadow: '0px 0px 3px #6B778D'
         })
     );
     return (

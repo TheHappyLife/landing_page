@@ -1,5 +1,6 @@
-import { Container } from "@mui/material";
+import { Container, Box } from "@mui/material";
 import { styled } from "@mui/material";
+import { useState } from "react";
 import BackgroundVideo from "../components/BackgroundVideo";
 import Content from "../components/Content";
 const landingPage = {
@@ -117,37 +118,47 @@ const landingPage = {
   },
 };
 
-const AppContainer = styled(Container)(() => ({
+const AppContainer = styled(Box)(() => ({
   position: "relative",
-  backgroundColor: "rgb(255, 0, 0)",
-  maxWidth: "100vw",
+  backgroundColor: "rgb(255, 0, 255)",
+  width: "100vw",
   height: "100vh",
+  backgroundImage: "url('home-background.jpg')",
+  backgroundRepeat: "no-repeat",
+  backgroundSize: "cover",
+  backgroundPosition: "center"
 }));
 
 const ContentWrapper = styled("div")(() => ({
   position: "absolute",
   top: "45%",
   transform: "translateY(-50%)",
-  left: "0",
+  left: "4%",
 }));
 
 const IntroducePageWrapper = styled(Container)(() => ({}));
 export default function Home() {
+  const [introRunning, setIntroRunning] = useState(true);
   return (
     <AppContainer>
-      <BackgroundVideo
-        link={"gemblockchain-io-intro-desktop.mp4"}
-        autoPlay
-        loop
-      />
-      <ContentWrapper>
-        <Content
-          color={"#fff"}
-          content={landingPage.content}
-          fontSize={1}
-          countdownTime={1000000}
+      {introRunning && (
+        <BackgroundVideo
+          link={"gemblockchain-io-intro-desktop.mp4"}
+          autoPlay
+          onEnded={(() => setIntroRunning(false))}
         />
-      </ContentWrapper>
+      )}
+
+      {!introRunning && (
+        <ContentWrapper>
+          <Content
+            color={"#fff"}
+            content={landingPage.content}
+            fontSize={1}
+            countdownTime={1000000}
+          />
+        </ContentWrapper>
+      )}
     </AppContainer>
   );
 }

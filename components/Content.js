@@ -7,14 +7,6 @@ const Content = ({ content, color = "#fff", fontSize = 1, countdownTime = 200000
   const ContentWrapper = styled("div")(() => ({
     fontSize: `${fontSize}rem`
   }));
-//   const Text = styled("h1")(
-//     ({ color = "fff", fontSize = "2em", weight = "normal", margin = '0' }) => ({
-//       color: color,
-//       fontSize: fontSize,
-//       fontWeight: weight,
-//       margin: margin
-//     })
-//   );
   const SubscribeButton = styled(Button)(
     ({ textColor = "#000", MyBackgroundColor = "#fff" }) => ({
       color: textColor,

@@ -1,6 +1,5 @@
-import styles from "../styles/Home.module.css";
-import { Button, Container } from "@mui/material";
-import styled from "styled-components";
+import { Container } from "@mui/material";
+import { styled } from "@mui/material";
 import BackgroundVideo from "../components/BackgroundVideo";
 import Content from "../components/Content";
 const landingPage = {
@@ -117,24 +116,38 @@ const landingPage = {
     moreDetailsText: "more information",
   },
 };
-const ContentWrapper = styled.div`
-  position: absolute;
-  top: 40%;
-  transform: translateY(-50%);
-  left: 5%;
-`;
+
+const AppContainer = styled(Container)(() => ({
+  position: "relative",
+  backgroundColor: "rgb(255, 0, 0)",
+  maxWidth: "100vw",
+  height: "100vh",
+}));
+
+const ContentWrapper = styled("div")(() => ({
+  position: "absolute",
+  top: "45%",
+  transform: "translateY(-50%)",
+  left: "0",
+}));
+
+const IntroducePageWrapper = styled(Container)(() => ({}));
 export default function Home() {
   return (
-    <Container className={styles.container}>
+    <AppContainer>
       <BackgroundVideo
         link={"gemblockchain-io-intro-desktop.mp4"}
         autoPlay
         loop
-        muted
       />
       <ContentWrapper>
-        <Content color={"#fff"} content={landingPage.content} fontSize={1} countdownTime={1000000}/>
+        <Content
+          color={"#fff"}
+          content={landingPage.content}
+          fontSize={1}
+          countdownTime={1000000}
+        />
       </ContentWrapper>
-    </Container>
+    </AppContainer>
   );
 }

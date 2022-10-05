@@ -1,22 +1,24 @@
 import { styled } from "@mui/material";
 import { Button } from "@mui/material";
 import MyCountdown from "./MyCountdown";
+import Text from "./Text";
 
 const Content = ({ content, color = "#fff", fontSize = 1, countdownTime = 200000 }) => {
   const ContentWrapper = styled("div")(() => ({
     fontSize: `${fontSize}rem`
   }));
-  const Text = styled("h1")(
-    ({ color = "fff", fontSize = "2em", weight = "normal" }) => ({
-      color: color,
-      fontSize: fontSize,
-      fontWeight: weight,
-    })
-  );
+//   const Text = styled("h1")(
+//     ({ color = "fff", fontSize = "2em", weight = "normal", margin = '0' }) => ({
+//       color: color,
+//       fontSize: fontSize,
+//       fontWeight: weight,
+//       margin: margin
+//     })
+//   );
   const SubscribeButton = styled(Button)(
-    ({ textColor = "#000", backgroundColor = "#fff" }) => ({
+    ({ textColor = "#000", MyBackgroundColor = "#fff" }) => ({
       color: textColor,
-      backgroundColor: backgroundColor,
+      backgroundColor: MyBackgroundColor,
       borderRadius: "0px",
       fontSize: '1.1em',
       height: '2.5em',
@@ -25,7 +27,7 @@ const Content = ({ content, color = "#fff", fontSize = 1, countdownTime = 200000
       transition: '0.2s',
       "&:hover": {
         color: textColor,
-        backgroundColor: backgroundColor,
+        backgroundColor: MyBackgroundColor,
         opacity: '0.9',
         borderRadius: "8px",
       },
@@ -50,7 +52,7 @@ const Content = ({ content, color = "#fff", fontSize = 1, countdownTime = 200000
   }));
   return (
     <ContentWrapper>
-      <Text color={color} fontSize={"2em"} weight={"700"}>
+      <Text color={color} fontSize={"2em"} weight={"700"} margin='0 0 1em 0'>
         <a href={'https://landing-page-beige-two.vercel.app/'}>{content.logo}</a>
       </Text>
       <MyCountdown
@@ -59,15 +61,15 @@ const Content = ({ content, color = "#fff", fontSize = 1, countdownTime = 200000
         weight="bold"
         color={color}
       />
-      <Text color={color} fontSize={"4em"} weight={"700"}>
+      <Text color={color} fontSize={"4em"} weight={"700"} margin='0.35em 0 0 0'>
         {content.title1}
       </Text>
-      <Text color={color} fontSize={"4em"} weight={"700"}>
+      <Text color={color} fontSize={"4em"} weight={"700"} margin='0 0 0.35em 0'>
         {content.title2}
       </Text>
       <Text color={color} fontSize={"1.2em"} weight={"500"}>{content.reminder1}</Text>
-      <Text color={color} fontSize={"1.2em"} weight={"500"}>{content.reminder2}</Text>
-      <SubscribeButton backgroundColor={color} textColor={'#000'}>{content.subscriptionText}</SubscribeButton>
+      <Text color={color} fontSize={"1.2em"} weight={"500"} margin='0 0 2em 0'>{content.reminder2}</Text>
+      <SubscribeButton MyBackgroundColor={color} textColor={'#000'}>{content.subscriptionText}</SubscribeButton>
       <DetailsButton textColor={color}>{content.moreDetailsText}</DetailsButton>
     </ContentWrapper>
   );

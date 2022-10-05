@@ -1,5 +1,40 @@
 import Countdown from "react-countdown";
-import styled from "styled-components";
+import {styled} from "@mui/material";
+
+const Container = styled('div')(() => ({
+  display: 'flex',
+  alignItems: 'center'
+}))
+  
+
+const Item = styled('div')(() => ({
+  position: 'relative'
+}))
+
+const Doc = styled('div')(({myFontSize, myColor}) => ({
+  width: `${myFontSize / 5}em`,
+  height: `${myFontSize / 5}em`,
+  borderRadius: `10em`,
+  backgroundColor: `${myColor}`,
+  margin: `4px ${myFontSize / 5}em 0`,
+  opacity: `0.7`
+}))
+
+const Num = styled('div')(({myFontSize, myColor, myWeight}) => ({
+  color: `${myColor}`,
+  fontSize: `${myFontSize}em`,
+  fontWeight: `${myWeight}`
+}))
+ 
+const Unit = styled('div')(({myFontSize, myColor}) => ({
+  position: `absolute`,
+  fontSize: `${myFontSize / 5}em`,
+  color: `${myColor}`,
+  left: `0`,
+  top: `calc(100% - ${myFontSize / 5}em)`,
+  marginLeft: `5px`,
+  opacity: `0.7`
+}))
 
 const MyCountdown = ({
   mSeconds = 10000,
@@ -7,38 +42,6 @@ const MyCountdown = ({
   fontSize = 1,
   weight = "normal",
 }) => {
-  const Container = styled.div`
-    display: flex;
-    align-items: center;
-  `;
-  const Item = styled.div`
-  position: relative;
-  `;
-
-  const Doc = styled.div`
-    width: ${fontSize / 5}em;
-    height: ${fontSize / 5}em;
-    border-radius: 10em;
-    background-color: ${color};
-    margin: 4px ${fontSize / 5}em 0;
-    opacity: 0.7;
-  `;
-  const Num = styled.div`
-    color: ${color};
-    font-size: ${fontSize}em;
-    font-weight: ${weight};
-  `;
-
-  const Unit = styled.div`
-  position: absolute;
-  font-size: ${fontSize/5}em;
-  color: ${color};
-  left: 0;
-  top: calc(100% - ${fontSize/5}em);
-  margin-left: 5px;
-  opacity: 0.7;
-  `;
-
   const Completionist = () => <span>You are good to go!</span>;
 
   const renderer = ({ hours, minutes, seconds, completed }) => {
@@ -53,18 +56,18 @@ const MyCountdown = ({
       return (
         <Container>
           <Item>
-            <Num>{hoursString}</Num>
-            <Unit>HOURS</Unit>
+            <Num myFontSize={fontSize} myWeight={weight} myColor={color}>{hoursString}</Num>
+            <Unit myFontSize={fontSize} myColor={color}>HOURS</Unit>
           </Item>
-          <Doc />
+          <Doc myFontSize={fontSize} myColor={color} />
           <Item>
-            <Num>{minutesString}</Num>
-            <Unit>MINUTES</Unit>
+            <Num myFontSize={fontSize} myWeight={weight} myColor={color}>{minutesString}</Num>
+            <Unit myFontSize={fontSize} myColor={color}>MINUTES</Unit>
           </Item>
-          <Doc />
+          <Doc myFontSize={fontSize} myColor={color} />
           <Item>
-            <Num>{secondsString}</Num>
-            <Unit>SECONDS</Unit>
+            <Num myFontSize={fontSize} myWeight={weight} myColor={color}>{secondsString}</Num>
+            <Unit myFontSize={fontSize} myColor={color}>SECONDS</Unit>
           </Item>
         </Container>
       );

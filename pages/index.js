@@ -1,6 +1,6 @@
 import { Container, Box } from "@mui/material";
 import { styled } from "@mui/material";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import BackgroundVideo from "../components/BackgroundVideo";
 import Content from "../components/Content";
 const landingPage = {
@@ -131,7 +131,7 @@ const AppContainer = styled(Box)(() => ({
 
 const ContentWrapper = styled("div")(() => ({
   position: "absolute",
-  top: "45%",
+  top: "50%",
   transform: "translateY(-50%)",
   left: "4%",
 }));
@@ -140,6 +140,7 @@ const IntroducePageWrapper = styled(Container)(() => ({}));
 export default function Home() {
   const [introRunning, setIntroRunning] = useState(true);
   return (
+    // useEffect(responsiveFontSizes)
     <AppContainer>
       {introRunning && (
         <BackgroundVideo
@@ -154,8 +155,9 @@ export default function Home() {
           <Content
             color={"#fff"}
             content={landingPage.content}
-            fontSize={1}
+            fontSize={0.5}
             countdownTime={1000000}
+            style={{fontSize: '50px'}}
           />
         </ContentWrapper>
       )}

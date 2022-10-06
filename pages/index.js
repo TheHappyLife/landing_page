@@ -46,7 +46,7 @@ const landingPage = {
       skills: [
         {
           skill: "WEBDESIGN",
-          value: 99,
+          value: 97,
         },
         {
           skill: "PHOTOGRAPHY",
@@ -108,6 +108,11 @@ const landingPage = {
           },
         ],
       },
+      contactFormTitle: 'Contact From',
+      nameInputPlaceholder: 'Your Name',
+      emailInputPlaceholder: 'Your Email',
+      messageInputPlaceholder: 'Your Message',
+      buttonText: 'Send a Message'
   },
   content: {
     logo: "Innovo",
@@ -152,7 +157,7 @@ const ContentWrapper = styled("div")(() => ({
   // transform: "translateY(-50%)",
   // left: "4%",
   // margin: "0 10px 10px 10px",
-  width: '55%',
+  flex: 1,
   fontSize: "1rem",
   "@media (max-width: 1023px)": {
     fontSize: "0.7rem",
@@ -168,7 +173,7 @@ const ContentWrapper = styled("div")(() => ({
 const ModalContainer = styled("div")(() => ({}));
 
 const IntroducePageWrapper = styled(Box)(() => ({
-  flex: 1,
+  width: '48%',
   backgroundColor: '#fff',
   height: '100vh',
   overflowY: 'scroll'

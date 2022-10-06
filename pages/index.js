@@ -1,8 +1,9 @@
-import { Container, Box } from "@mui/material";
+import { Container, Box, Modal } from "@mui/material";
 import { styled } from "@mui/material";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import BackgroundVideo from "../components/BackgroundVideo";
 import Content from "../components/Content";
+import SubmitPopup from "../components/SubmitPopup";
 const landingPage = {
   title: "Welcome To Innovative Template",
   description:
@@ -116,17 +117,23 @@ const landingPage = {
     subscriptionText: "Notify me",
     moreDetailsText: "more information",
   },
+  popupContent: {
+    title: 'Stay Tuned',
+    description: 'Be the first to know fresh news, updates and new releases! Just add your e-mail address and well let you know.',
+    inputLabel: 'Email address',
+    buttonContent: 'Submit'
+  }
 };
 
 const AppContainer = styled(Box)(() => ({
   position: "relative",
   backgroundColor: "rgb(255, 0, 255)",
   width: "100vw",
-  height: "100vh",
+  minHeight: "100vh",
   backgroundImage: "url('home-background.jpg')",
   backgroundRepeat: "no-repeat",
   backgroundSize: "cover",
-  backgroundPosition: "center"
+  backgroundPosition: "center",
 }));
 
 const ContentWrapper = styled("div")(() => ({
@@ -134,15 +141,35 @@ const ContentWrapper = styled("div")(() => ({
   top: "50%",
   transform: "translateY(-50%)",
   left: "4%",
+  margin: "0 10px 10px 10px",
+  border: '4px red solid',
+  fontSize: "1rem",
+  "@media (max-width: 1023px)": {
+    fontSize: "0.7rem",
+  },
+  "@media (max-width:500px)": {
+    fontSize: "0.6rem",
+  },
+  "@media (max-width:300px)": {
+    fontSize: "0.35rem",
+  },
 }));
+
+const ModalContainer = styled("div")(() => ({}));
 
 const IntroducePageWrapper = styled(Container)(() => ({}));
 export default function Home() {
+  const [openModal, setOpenModal] = useState(false);
   const [introRunning, setIntroRunning] = useState(true);
+  const handleOpenModal = () => {
+    setOpenModal(true);
+  }
+  const handleCloseModal = () => {
+    setOpenModal(false);
+  }
   return (
-    // useEffect(responsiveFontSizes)
     <AppContainer>
-      {introRunning && (
+      {0 && (
         <BackgroundVideo
           link={"gemblockchain-io-intro-desktop.mp4"}
           autoPlay
@@ -150,17 +177,27 @@ export default function Home() {
         />
       )}
 
-      {!introRunning && (
+      {1 && (
         <ContentWrapper>
           <Content
             color={"#fff"}
             content={landingPage.content}
             fontSize={0.5}
             countdownTime={1000000}
-            style={{fontSize: '50px'}}
+            notifyButtonFunction = {handleOpenModal}
           />
         </ContentWrapper>
       )}
+      <ModalContainer>
+        <Modal
+          open={openModal}
+          onClose={handleCloseModal}
+          aria-labelledby="modal-modal-title"
+          aria-describedby="modal-modal-description"
+        >
+          <SubmitPopup popupContent={landingPage.popupContent} closePopup={handleCloseModal}/>
+        </Modal>
+      </ModalContainer>
     </AppContainer>
   );
 }

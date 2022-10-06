@@ -3,7 +3,7 @@ import { Button } from "@mui/material";
 import MyCountdown from "./MyCountdown";
 import Text from "./Text";
 
-const Content = ({ content, color = "#fff", fontSize = 1, countdownTime = 200000 }) => {
+const Content = ({ content, color = "#fff", fontSize = 1, countdownTime = 200000, notifyButtonFunction }) => {
   const ContentWrapper = styled("div")(() => ({
     // fontSize: `${fontSize}rem`
   }));
@@ -61,7 +61,7 @@ const Content = ({ content, color = "#fff", fontSize = 1, countdownTime = 200000
       </Text>
       <Text color={color} fontSize={"1.2em"} weight={"500"}>{content.reminder1}</Text>
       <Text color={color} fontSize={"1.2em"} weight={"500"} margin='0 0 2em 0'>{content.reminder2}</Text>
-      <SubscribeButton MyBackgroundColor={color} textColor={'#000'}>{content.subscriptionText}</SubscribeButton>
+      <SubscribeButton MyBackgroundColor={color} textColor={'#000'} onClick={notifyButtonFunction}>{content.subscriptionText}</SubscribeButton>
       <DetailsButton textColor={color}>{content.moreDetailsText}</DetailsButton>
     </ContentWrapper>
   );

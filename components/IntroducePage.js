@@ -94,7 +94,8 @@ const IntroducePage = ({ introduceContents, onCloseIntroducePage }) => {
           position: "fixed",
           top: "20px",
           right: "20px",
-          opacity: 0.8
+          opacity: 0.8,
+          zIndex: 10
         }}
       >
         <CloseIcon sx={{fontSize: "40px",}} />

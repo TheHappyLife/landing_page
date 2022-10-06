@@ -1,7 +1,8 @@
-import { Box, styled, TextField, Button } from "@mui/material";
+import { Box, styled, TextField, Button, IconButton } from "@mui/material";
 import MyImageList from "../components/MyImageList";
 import React from "react";
 import { GoogleMap, LoadScript } from "@react-google-maps/api";
+import CloseIcon from "@mui/icons-material/Close";
 
 const Wrapper = styled(Box)(() => ({
   padding: "20px",
@@ -84,9 +85,20 @@ const MyGoogleMap = () => {
   );
 };
 
-const IntroducePage = ({ introduceContents }) => {
+const IntroducePage = ({ introduceContents, onCloseIntroducePage }) => {
   return (
     <Wrapper>
+      <IconButton
+      onClick={onCloseIntroducePage}
+        sx={{
+          position: "fixed",
+          top: "20px",
+          right: "20px",
+          opacity: 0.8
+        }}
+      >
+        <CloseIcon sx={{fontSize: "40px",}} />
+      </IconButton>
       <h1>{introduceContents.title}</h1>
       <p>{introduceContents.description}</p>
       <MyImageList features={introduceContents.features}></MyImageList>

@@ -179,16 +179,16 @@ const IntroducePageWrapper = styled(Box)(() => ({
   overflowY: 'scroll'
 }));
 export default function Home() {
-  const [openIntroducePage, setOpenIntroducePage] = useState(false);
+  const [openIntroducePage, setOpenIntroducePage] = useState(true);
   const [openModal, setOpenModal] = useState(false);
-  const [introRunning, setIntroRunning] = useState(true);
+  const [introRunning, setIntroRunning] = useState(false);
   const handleOpenModal = () => {
     setOpenModal(true);
   };
   const handleCloseModal = () => {
     setOpenModal(false);
   };
-  const handleOpenIntroducePage = () => {
+  const handleDisplayIntroducePage = () => {
     setOpenIntroducePage(!openIntroducePage);
   }
   return (
@@ -210,11 +210,11 @@ export default function Home() {
               fontSize={0.5}
               countdownTime={1000000}
               notifyButtonFunction={handleOpenModal}
-              moreInformationButtonFunction={handleOpenIntroducePage}
+              moreInformationButtonFunction={handleDisplayIntroducePage}
             />
           </ContentWrapper>
           {openIntroducePage&&<IntroducePageWrapper>
-            <IntroducePage introduceContents={landingPage.introduceContents}/>
+            <IntroducePage introduceContents={landingPage.introduceContents} onCloseIntroducePage={handleDisplayIntroducePage}/>
           </IntroducePageWrapper>}
         </StaticPageWrapper>
       )}

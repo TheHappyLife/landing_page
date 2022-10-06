@@ -188,7 +188,7 @@ export default function Home() {
   }
   return (
     <AppContainer>
-      {false && (
+      {introRunning && (
         <BackgroundVideo
           link={"gemblockchain-io-intro-desktop.mp4"}
           autoPlay
@@ -196,7 +196,7 @@ export default function Home() {
         />
       )}
 
-      {true && (
+      {!introRunning && (
         <StaticPageWrapper>
           <ContentWrapper>
             <Content

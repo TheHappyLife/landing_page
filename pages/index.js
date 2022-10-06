@@ -119,15 +119,22 @@ const landingPage = {
     buttonText: "Send a Message",
   },
   content: {
-    logo: "Innovo",
+    // logo: "Innovo",
+    logo:'',
     start: new Date(),
     end: 5,
-    title1: "Hey Folks.",
-    title2: "This Website is Live Soon!",
-    reminder1: `Fresh design and content is preparing right now.`,
-    reminder2: `Don't forget to subscribe to stay tuned!`,
+    title1: "",
+    title2: "",
+    reminder1: ``,
+    reminder2: ``,
     subscriptionText: "Notify me",
     moreDetailsText: "more information",
+    // title1: "Hey Folks.",
+    // title2: "This Website is Live Soon!",
+    // reminder1: `Fresh design and content is preparing right now.`,
+    // reminder2: `Don't forget to subscribe to stay tuned!`,
+    // subscriptionText: "Notify me",
+    // moreDetailsText: "more information",
   },
   popupContent: {
     title: "Stay Tuned",
@@ -140,7 +147,6 @@ const landingPage = {
 
 const AppContainer = styled(Box)(({ BackgroundImageLink }) => ({
   position: "relative",
-  backgroundColor: "rgb(255, 0, 255)",
   width: "100vw",
   minHeight: "100vh",
   backgroundImage: `url(${BackgroundImageLink})`,
@@ -156,11 +162,11 @@ const StaticPageWrapper = styled("div")(() => ({
 }));
 
 const ContentWrapper = styled("div")(() => ({
-  // position: "absolute",
-  // top: "50%",
-  // transform: "translateY(-50%)",
-  // left: "4%",
-  // margin: "0 10px 10px 10px",
+  position: "absolute",
+  top: "50%",
+  transform: "translate(-50%,-50%)",
+  left: "25%",
+  margin: "0 10px 10px 10px",
   flex: 1,
   fontSize: "1rem",
   "@media (max-width: 1023px)": {
@@ -178,6 +184,7 @@ const ModalContainer = styled("div")(() => ({}));
 
 const IntroducePageWrapper = styled(Box)(() => ({
   width: "48%",
+  marginLeft: 'auto',
   backgroundColor: "#fff",
   height: "100vh",
   overflowY: "scroll",

@@ -1,5 +1,5 @@
 import { Box, styled, TextField, Button, IconButton } from "@mui/material";
-import MyImageList from "../components/MyImageList";
+import Features from "./Features";
 import React from "react";
 import { GoogleMap, LoadScript } from "@react-google-maps/api";
 import CloseIcon from "@mui/icons-material/Close";
@@ -93,7 +93,7 @@ const IntroducePage = ({ introduceContents, onCloseIntroducePage }) => {
         sx={{
           position: "fixed",
           top: "20px",
-          right: "20px",
+          right: "10px",
           opacity: 0.8,
           zIndex: 10
         }}
@@ -102,7 +102,7 @@ const IntroducePage = ({ introduceContents, onCloseIntroducePage }) => {
       </IconButton>
       <h1>{introduceContents.title}</h1>
       <p>{introduceContents.description}</p>
-      <MyImageList features={introduceContents.features}></MyImageList>
+      <Features features={introduceContents.features}></Features>
       <Box className="skills">
         <h1>{introduceContents.skillTitle}</h1>
         {introduceContents.skills.map((skill, index) => (

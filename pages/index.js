@@ -160,6 +160,7 @@ const AppContainer = styled(Box)(({ BackgroundImageLink }) => ({
   backgroundRepeat: "no-repeat",
   backgroundSize: "cover",
   backgroundPosition: "center",
+  transition: '2s'
 }));
 
 const StaticPageWrapper = styled("div")(() => ({
@@ -229,7 +230,7 @@ export default function Home() {
           autoPlay
           onEnded={() => {
             setIntroRunning(false);
-            setInterval(changeBackgroundImageIndex, 2000);
+            setInterval(changeBackgroundImageIndex, 5000);
           }}
         />
       )}

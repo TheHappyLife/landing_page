@@ -152,11 +152,11 @@ const landingPage = {
   },
 };
 
-const AppContainer = styled(Box)(({ BackgroundImageLink }) => ({
+const AppContainer = styled(Box)(({ backgroundimagelink }) => ({
   position: "relative",
   width: "100vw",
   minHeight: "100vh",
-  backgroundImage: `url(${BackgroundImageLink})`,
+  backgroundImage: `url(${backgroundimagelink})`,
   backgroundRepeat: "no-repeat",
   backgroundSize: "cover",
   backgroundPosition: "center",
@@ -211,6 +211,7 @@ export default function Home() {
     setOpenIntroducePage(!openIntroducePage);
   };
   const changeBackgroundImageIndex = () => {
+    console.log('change');
     setBackgroundImageIndex((prev) => {
       return prev + 1 > landingPage.media.backgroundImageLink.length - 1
         ? 0
@@ -219,7 +220,7 @@ export default function Home() {
   };
   return (
     <AppContainer
-      BackgroundImageLink={
+    backgroundimagelink={
         landingPage.media.backgroundImageLink[backgroundImageIndex]
       }
     >
@@ -229,8 +230,12 @@ export default function Home() {
           link={landingPage.media.videoLink}
           autoPlay
           onEnded={() => {
-            setIntroRunning(false);
-            setInterval(changeBackgroundImageIndex, 5000);
+            const initBackgroundImages = setInterval(changeBackgroundImageIndex, 1000);
+            setTimeout(() => {
+              clearInterval(initBackgroundImages);
+              setIntroRunning(false);
+              setInterval(changeBackgroundImageIndex, 5000);
+            }, 4000);
           }}
         />
       )}
@@ -261,8 +266,8 @@ export default function Home() {
         <Modal
           open={openModal}
           onClose={handleCloseModal}
-          aria-labelledby="modal-modal-title"
-          aria-describedby="modal-modal-description"
+          // aria-labelledby="modal-modal-title"
+          // aria-describedby="modal-modal-description"
         >
           <SubmitPopup
             popupContent={landingPage.popupContent}

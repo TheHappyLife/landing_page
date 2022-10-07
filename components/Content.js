@@ -7,9 +7,9 @@ const Content = ({ content, color = "#fff", fontSize = 1, countdownTime = 200000
   const ContentWrapper = styled("div")(() => ({
   }));
   const SubscribeButton = styled(Button)(
-    ({ textColor = "#000", MyBackgroundColor = "#fff" }) => ({
+    ({ textColor = "#000", myBackgroundColor = "#fff" }) => ({
       color: textColor,
-      backgroundColor: MyBackgroundColor,
+      backgroundColor: myBackgroundColor,
       borderRadius: "0px",
       fontSize: '1.1em',
       height: '2.5em',
@@ -18,7 +18,7 @@ const Content = ({ content, color = "#fff", fontSize = 1, countdownTime = 200000
       transition: '0.2s',
       "&:hover": {
         color: textColor,
-        backgroundColor: MyBackgroundColor,
+        backgroundColor: myBackgroundColor,
         opacity: '0.9',
         borderRadius: "8px",
       },
@@ -60,7 +60,7 @@ const Content = ({ content, color = "#fff", fontSize = 1, countdownTime = 200000
       </Text>
       <Text color={color} fontSize={"1.2em"} weight={"500"}>{content.reminder1}</Text>
       <Text color={color} fontSize={"1.2em"} weight={"500"} margin='0 0 2em 0'>{content.reminder2}</Text>
-      <SubscribeButton MyBackgroundColor={color} textColor={'#000'} onClick={notifyButtonFunction}>{content.subscriptionText}</SubscribeButton>
+      <SubscribeButton myBackgroundColor={color} textColor={'#000'} onClick={notifyButtonFunction}>{content.subscriptionText}</SubscribeButton>
       <DetailsButton textColor={color} onClick={moreInformationButtonFunction}>{content.moreDetailsText}</DetailsButton>
     </ContentWrapper>
   );

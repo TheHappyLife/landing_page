@@ -5,10 +5,17 @@ import BackgroundVideo from "../components/BackgroundVideo";
 import Content from "../components/Content";
 import IntroducePage from "../components/IntroducePage";
 import SubmitPopup from "../components/SubmitPopup";
+import Seo from "../components/Seo"
+const seo = {
+  title: 'Innovo | Test SEO',
+  description: 'Aenean sed mi leo. Donec mollis ut sem sed scelerisque. Sed at lorem sem. Vestibulum ornare hendrerit augue, suscipit finibus dui imperdiet ut. Quisque placerat nulla sed enim mattis aliquet. Phasellus vel nulla neque. Maecenas faucibus lectus at nunc ultricies finibus.',
+  url: 'https://landing-page-beige-two.vercel.app/',
+  thumbnailUrl: 'https://landing-page-beige-two.vercel.app/bg1.jpg'
+}
 const landingPage = {
   media: {
     videoLink: "gemblockchain-io-intro-desktop.mp4",
-    backgroundImageLink: ['bg1.jpg', 'bg2.jpg', 'bg3.jpg', 'bg4.jpg'],
+    backgroundImageLink: ["bg1.jpg", "bg2.jpg", "bg3.jpg", "bg4.jpg"],
   },
   introduceContents: {
     title: "Welcome To Innovative Template",
@@ -120,7 +127,7 @@ const landingPage = {
   },
   content: {
     // logo: "Innovo",
-    logo:'',
+    logo: "",
     start: new Date(),
     end: 5,
     title1: "",
@@ -166,7 +173,6 @@ const ContentWrapper = styled("div")(() => ({
   top: "50%",
   transform: "translate(-50%,-50%)",
   left: "25%",
-  margin: "0 10px 10px 10px",
   flex: 1,
   fontSize: "1rem",
   "@media (max-width: 1023px)": {
@@ -184,7 +190,7 @@ const ModalContainer = styled("div")(() => ({}));
 
 const IntroducePageWrapper = styled(Box)(() => ({
   width: "48%",
-  marginLeft: 'auto',
+  marginLeft: "auto",
   backgroundColor: "#fff",
   height: "100vh",
   overflowY: "scroll",
@@ -193,7 +199,7 @@ export default function Home() {
   const [openIntroducePage, setOpenIntroducePage] = useState(false);
   const [openModal, setOpenModal] = useState(false);
   const [introRunning, setIntroRunning] = useState(true);
-  const [backgroundImageIndex, setBackgroundImageIndex] = useState(0)
+  const [backgroundImageIndex, setBackgroundImageIndex] = useState(0);
   const handleOpenModal = () => {
     setOpenModal(true);
   };
@@ -204,20 +210,26 @@ export default function Home() {
     setOpenIntroducePage(!openIntroducePage);
   };
   const changeBackgroundImageIndex = () => {
-    setBackgroundImageIndex(prev => {
-      return ((prev + 1) > (landingPage.media.backgroundImageLink.length - 1))?0:(prev + 1)
-    })}
+    setBackgroundImageIndex((prev) => {
+      return prev + 1 > landingPage.media.backgroundImageLink.length - 1
+        ? 0
+        : prev + 1;
+    });
+  };
   return (
     <AppContainer
-      BackgroundImageLink={landingPage.media.backgroundImageLink[backgroundImageIndex]}
+      BackgroundImageLink={
+        landingPage.media.backgroundImageLink[backgroundImageIndex]
+      }
     >
+      <Seo seo={seo} />
       {introRunning && (
         <BackgroundVideo
           link={landingPage.media.videoLink}
           autoPlay
           onEnded={() => {
             setIntroRunning(false);
-            setInterval(() => {changeBackgroundImageIndex(); console.log('>>>indexImage: ', backgroundImageIndex);}, 2000)
+            setInterval(changeBackgroundImageIndex, 2000);
           }}
         />
       )}

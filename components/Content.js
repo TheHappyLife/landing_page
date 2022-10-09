@@ -1,68 +1,120 @@
-import { styled } from "@mui/material";
+import { Box, styled } from "@mui/material";
 import { Button } from "@mui/material";
 import MyCountdown from "./MyCountdown";
-import Text from "./Text";
 
-const Content = ({ content, color = "#fff", fontSize = 1, countdownTime = 200000, notifyButtonFunction, moreInformationButtonFunction }) => {
-  const ContentWrapper = styled("div")(() => ({
-  }));
-  const SubscribeButton = styled(Button)(
-    ({ textColor = "#000", myBackgroundColor = "#fff" }) => ({
-      color: textColor,
-      backgroundColor: myBackgroundColor,
-      borderRadius: "0px",
-      fontSize: '1.1em',
-      height: '2.5em',
-      padding: '0px 1em',
-      textTransform: 'capitalize',
-      transition: '0.2s',
-      "&:hover": {
-        color: textColor,
-        backgroundColor: myBackgroundColor,
-        opacity: '0.9',
-        borderRadius: "8px",
-      },
-    })
-  );
-  const DetailsButton = styled(Button)(({ textColor = "#000" }) => ({
-    color: textColor,
-    marginLeft: '0.5em',
-    backgroundColor: "transparent",
-    textTransform: 'capitalize',
+const Content = ({
+  content,
+  mycolor = "#fff",
+  myfontsize = 1,
+  notifybuttonfunction,
+  moreinformationbuttonfunction,
+  count,
+  totalseconds = 3600,
+}) => {
+  const buttonCss = {
     borderRadius: "0px",
-    border: `3.5px solid ${textColor}`,
-    boxSizing: "border-box",
-    fontSize: '1.1em',
-    transition: '0.2s',
-    height: '2.5em',
-    padding: '0px 1em',
+    fontSize: `${myfontsize}em`,
+    height: "2.5em",
+    padding: " 0 1em",
+    transition: "0.3s",
     "&:hover": {
-        opacity: '0.9',
-        borderRadius: "8px",
+      opacity: 0.9,
+      borderRadius: "10px",
     },
+  };
+  const Text = styled("h1")(({ mysx = {} }) => ({
+    color: mycolor,
+    fontFamily: "roboto",
+    ...mysx,
   }));
   return (
-    <ContentWrapper>
-      <Text color={color} fontSize={"2em"} weight={"700"} margin='0 0 1em 0'>
-        <a href={'https://landing-page-beige-two.vercel.app/'}>{content.logo}</a>
+    <Box>
+      <Text
+        mysx={{
+          fontSize: `${myfontsize * 2}em`,
+          weight: 700,
+          margin: "0 0 1em 0",
+        }}
+      >
+        <a href={"https://landing-page-beige-two.vercel.app/"}>
+          {content.logo}
+        </a>
       </Text>
       <MyCountdown
-        mSeconds={countdownTime}
-        fontSize={4.5}
-        weight="bold"
-        color={color}
+        count={count}
+        endcountdownmessage="00:00:00:00"
+        totalseconds={totalseconds}
+        myfontsize={myfontsize * 4.5}
+        myweight="bold"
+        mycolor={mycolor}
+        showday
       />
-      <Text color={color} fontSize={"4em"} weight={"700"} margin='0.35em 0 0 0'>
+      <Text
+        mysx={{
+          fontSize: `${myfontsize * 4}em`,
+          weight: 700,
+          margin: "0.35em 0 0 0",
+        }}
+      >
         {content.title1}
       </Text>
-      <Text color={color} fontSize={"4em"} weight={"700"} margin='0 0 0.35em 0'>
+      <Text
+        mysx={{
+          fontSize: `${myfontsize * 4}em`,
+          weight: 700,
+          margin: "0.35em 0 0 0",
+        }}
+      >
         {content.title2}
       </Text>
-      <Text color={color} fontSize={"1.2em"} weight={"500"}>{content.reminder1}</Text>
-      <Text color={color} fontSize={"1.2em"} weight={"500"} margin='0 0 2em 0'>{content.reminder2}</Text>
-      <SubscribeButton myBackgroundColor={color} textColor={'#000'} onClick={notifyButtonFunction}>{content.subscriptionText}</SubscribeButton>
-      <DetailsButton textColor={color} onClick={moreInformationButtonFunction}>{content.moreDetailsText}</DetailsButton>
-    </ContentWrapper>
+      <Text
+        mysx={{
+          fontSize: `${myfontsize * 1.2}em`,
+          weight: 500,
+          margin: "0 0 2em 0",
+        }}
+      >
+        {content.reminder1}
+      </Text>
+      <Text
+        mysx={{
+          fontSize: `${myfontsize * 1.2}em`,
+          weight: 500,
+          margin: "0 0 2em 0",
+        }}
+      >
+        {content.reminder2}
+      </Text>
+
+      <Button
+        onClick={notifybuttonfunction}
+        sx={{
+          ...buttonCss,
+          backgroundColor: mycolor,
+          color: "#333",
+          "&:hover": {
+            ...buttonCss["&:hover"],
+            backgroundColor: mycolor,
+            color: "#333",
+          },
+        }}
+      >
+        {content.subscriptionText}
+      </Button>
+      <Button
+        onClick={moreinformationbuttonfunction}
+        sx={{
+          ...buttonCss,
+          marginLeft: "0.5em",
+          boxSizing: "border-box",
+          backgroundColor: "transparent",
+          color: mycolor,
+          border: `3.5px solid ${mycolor}`,
+        }}
+      >
+        {content.moreDetailsText}
+      </Button>
+    </Box>
   );
 };
 export default Content;

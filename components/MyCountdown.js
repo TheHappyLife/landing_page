@@ -1,78 +1,107 @@
-import Countdown from "react-countdown";
-import {styled} from "@mui/material";
-
-const Container = styled('div')(() => ({
-  display: 'flex',
-  alignItems: 'center'
-}))
-  
-
-const Item = styled('div')(() => ({
-  position: 'relative'
-}))
-
-const Doc = styled('div')(({myFontSize, myColor}) => ({
-  width: `${myFontSize / 5}em`,
-  height: `${myFontSize / 5}em`,
-  borderRadius: `10em`,
-  backgroundColor: `${myColor}`,
-  margin: `4px ${myFontSize / 5}em 0`,
-  opacity: `0.7`
-}))
-
-const Num = styled('div')(({myFontSize, myColor, myWeight}) => ({
-  color: `${myColor}`,
-  fontSize: `${myFontSize}em`,
-  fontWeight: `${myWeight}`
-}))
- 
-const Unit = styled('div')(({myFontSize, myColor}) => ({
-  position: `absolute`,
-  fontSize: `${myFontSize / 5}em`,
-  color: `${myColor}`,
-  left: `0`,
-  top: `calc(100% - ${myFontSize / 5}em)`,
-  marginLeft: `5px`,
-  opacity: `0.7`
-}))
+import { styled, Box } from "@mui/material";
+import { useEffect, useState } from "react";
 
 const MyCountdown = ({
-  mSeconds = 10000,
-  color = "#fff",
-  fontSize = 1,
-  weight = "normal",
+  totalseconds = 3600,
+  endcountdownmessage = "You are good to go!",
+  mycolor = "#fff",
+  myfontsize = 1,
+  myweight = "normal",
+  showday,
+  count,
 }) => {
-  const Completionist = () => <span>You are good to go!</span>;
+  const [timeRemaining, setTimeRemaining] = useState(totalseconds);
+  useEffect(() => {
+    if (count)
+      var countInterval = setInterval(() => {
+        setTimeRemaining((prev) => prev - 1);
+      }, 1000);
+    else clearInterval(countInterval);
+    return () => clearInterval(countInterval);
+  }, [count]);
 
-  const renderer = ({ hours, minutes, seconds, completed }) => {
-    if (completed) {
-      return <Completionist />;
-    } else {
-      let hoursString = hours < 10 ? "0" + hours.toString() : hours.toString();
-      let minutesString =
-        minutes < 10 ? "0" + minutes.toString() : minutes.toString();
-      let secondsString =
-        seconds < 10 ? "0" + seconds.toString() : seconds.toString();
+  const createTime = (totalSeconds) => {
+    if (totalSeconds > 0) {
+      const days = Math.floor(totalSeconds / 86400);
+      const hours = Math.floor((totalSeconds % 86400) / 3600);
+      const minutes = Math.floor(
+        totalSeconds < 3600
+          ? totalSeconds / 60
+          : (totalSeconds % (days * 86400 + hours * 3600)) / 60
+      );
+      const seconds = Math.floor(totalSeconds % 60);
+      return {
+        days: days > 9 ? days.toString() : "0" + days,
+        hours: hours > 9 ? hours.toString() : "0" + hours,
+        minutes: minutes > 9 ? minutes.toString() : "0" + minutes,
+        seconds: seconds > 9 ? seconds.toString() : "0" + seconds,
+        isComplete: false,
+      };
+    } else return { isComplete: true };
+  };
+
+  const Countdown = ({ time }) => {
+    if (time.isComplete)
       return (
-        <Container>
+        <span style={{ fontSize: `${myfontsize}em`, color: mycolor }}>
+          {endcountdownmessage}
+        </span>
+      );
+    else {
+      const Item = styled("div")(() => ({
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "center",
+      }));
+
+      const Num = styled("div")(() => ({
+        color: `${mycolor}`,
+        fontSize: `${myfontsize}em`,
+        fontWeight: `${myweight}`,
+        lineHeight: "100%",
+      }));
+
+      const Unit = styled("div")(() => ({
+        fontSize: `${myfontsize / 5}em`,
+        color: `${mycolor}`,
+        opacity: `0.7`,
+      }));
+
+      const Doc = styled("div")(() => ({
+        width: `${myfontsize / 5}em`,
+        height: `${myfontsize / 5}em`,
+        borderRadius: `10em`,
+        backgroundColor: `${mycolor}`,
+        margin: `0 ${myfontsize / 6}em 0`,
+        opacity: `0.7`,
+      }));
+      return (
+        <Box sx={{ display: "flex", alignItems: "center" }}>
+          {showday && (
+            <Item>
+              <Num>{time.days ? time.days : "00"}</Num>
+              <Unit>DAYS</Unit>
+            </Item>
+          )}
+          {showday && <Doc />}
           <Item>
-            <Num myFontSize={fontSize} myWeight={weight} myColor={color}>{hoursString}</Num>
-            <Unit myFontSize={fontSize} myColor={color}>HOURS</Unit>
+            <Num>{time.hours ? time.hours : "00"}</Num>
+            <Unit>HOURS</Unit>
           </Item>
-          <Doc myFontSize={fontSize} myColor={color} />
+          <Doc />
           <Item>
-            <Num myFontSize={fontSize} myWeight={weight} myColor={color}>{minutesString}</Num>
-            <Unit myFontSize={fontSize} myColor={color}>MINUTES</Unit>
+            <Num>{time.minutes ? time.minutes : "00"}</Num>
+            <Unit>MINUTES</Unit>
           </Item>
-          <Doc myFontSize={fontSize} myColor={color} />
+          <Doc />
           <Item>
-            <Num myFontSize={fontSize} myWeight={weight} myColor={color}>{secondsString}</Num>
-            <Unit myFontSize={fontSize} myColor={color}>SECONDS</Unit>
+            <Num>{time.seconds ? time.seconds : "00"}</Num>
+            <Unit>SECONDS</Unit>
           </Item>
-        </Container>
+        </Box>
       );
     }
   };
-  return <Countdown date={Date.now() + mSeconds} renderer={renderer} />;
+  return <Countdown time={createTime(timeRemaining)} />;
 };
 export default MyCountdown;

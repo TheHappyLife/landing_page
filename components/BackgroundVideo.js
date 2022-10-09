@@ -1,16 +1,8 @@
-import { styled } from "@mui/material";
+import { Box, styled } from "@mui/material";
 import { useEffect, useState } from "react";
 import IconButton from "@mui/material/IconButton";
 import VolumeUpIcon from "@mui/icons-material/VolumeUp";
 import VolumeOffIcon from "@mui/icons-material/VolumeOff";
-const VideoWrapper = styled("div")(() => ({
-  position: "fixed",
-  top: "0",
-  right: "0",
-  bottom: "0",
-  left: "0",
-  backgroundColor: "#000",
-}));
 
 const Video = styled("video")(() => ({
   position: "absolute",
@@ -19,11 +11,16 @@ const Video = styled("video")(() => ({
   transform: "translate3d(-50%, -50%, 0)",
 }));
 
+const volimeCss = {
+  color: "#fff",
+  fontSize: "3rem",
+  opacity: "0.7",
+};
+
 const setVideoSize = () => {
   const video = document.querySelector("video");
-  console.log("resized");
   if (video) {
-    const body = document.querySelector("body");
+    const body = document.querySelector('body');
     const isLarge = body.clientWidth / body.clientHeight >= 16 / 9;
     if (isLarge) {
       video.style.width = "100vw";
@@ -36,35 +33,28 @@ const setVideoSize = () => {
   }
 };
 
-const BackgroundVideo = ({ link, ...videoProps }) => {
+const BackgroundVideo = ({ link, handleVideoEnded, ...videoProps }) => {
   const [muted, setMuted] = useState(true);
   const innitEventsFunction = () => {
     setVideoSize();
     window.addEventListener("resize", setVideoSize);
+    return () => window.removeEventListener("resize", setVideoSize);
   };
-  useEffect(innitEventsFunction);
+
+  useEffect(innitEventsFunction, []);
   return (
-    <VideoWrapper>
-      <Video {...videoProps} muted={muted}>
+    <Box className="video-wp">
+      <Video {...videoProps} muted={muted} onEnded={(e) => handleVideoEnded(e)}>
         <source src={link} />
       </Video>
       <IconButton
-        className="toggleSoundMode"
         onClick={() => setMuted(!muted)}
-        style={{ position: "absolute", right: "20px", top: "20px" }}
+        sx={{ position: "absolute", right: "20px", top: "20px" }}
       >
-        {(muted && (
-          <VolumeOffIcon
-            style={{ color: "#fff", fontSize: "3rem", opacity: "0.7" }}
-          />
-        )) ||
-          (!muted && (
-            <VolumeUpIcon
-              style={{ color: "#fff", fontSize: "3rem", opacity: "0.7" }}
-            />
-          ))}
+        {!muted && <VolumeUpIcon sx={volimeCss} />}
+        {muted && <VolumeOffIcon sx={volimeCss} />}
       </IconButton>
-    </VideoWrapper>
+    </Box>
   );
 };
 export default BackgroundVideo;

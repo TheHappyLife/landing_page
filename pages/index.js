@@ -1,21 +1,23 @@
-import { Box, Modal } from "@mui/material";
+import { Box, Button, Modal } from "@mui/material";
 import { styled } from "@mui/material";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import BackgroundVideo from "../components/BackgroundVideo";
 import Content from "../components/Content";
 import IntroducePage from "../components/IntroducePage";
 import SubmitPopup from "../components/SubmitPopup";
-import Seo from "../components/Seo"
+import Seo from "../components/Seo";
+import MyCountdown from "../components/MyCountdown";
 const seo = {
-  title: 'Innovo | Test SEO',
-  description: 'Aenean sed mi leo. Donec mollis ut sem sed scelerisque. Sed at lorem sem. Vestibulum ornare hendrerit augue, suscipit finibus dui imperdiet ut. Quisque placerat nulla sed enim mattis aliquet. Phasellus vel nulla neque. Maecenas faucibus lectus at nunc ultricies finibus.',
-  url: 'https://landing-page-beige-two.vercel.app/',
-  thumbnailUrl: 'https://landing-page-beige-two.vercel.app/bg1.jpg'
-}
+  title: "Innovo | Test SEO",
+  description:
+    "Aenean sed mi leo. Donec mollis ut sem sed scelerisque. Sed at lorem sem. Vestibulum ornare hendrerit augue, suscipit finibus dui imperdiet ut. Quisque placerat nulla sed enim mattis aliquet. Phasellus vel nulla neque. Maecenas faucibus lectus at nunc ultricies finibus.",
+  url: "https://landing-page-beige-two.vercel.app/",
+  thumbnailUrl: "https://landing-page-beige-two.vercel.app/bg1.jpg",
+};
 const landingPage = {
   media: {
     videoLink: "gemblockchain-io-intro-desktop.mp4",
-    backgroundImageLink: ["bg1.jpg", "bg2.jpg", "bg3.jpg", "bg4.jpg"],
+    backgroundImageLinks: ["bg1.jpg", "bg2.jpg", "bg3.jpg", "bg4.jpg"],
   },
   introduceContents: {
     title: "Welcome To Innovative Template",
@@ -160,7 +162,7 @@ const AppContainer = styled(Box)(({ backgroundimagelink }) => ({
   backgroundRepeat: "no-repeat",
   backgroundSize: "cover",
   backgroundPosition: "center",
-  transition: '2s'
+  // transition: '2s'
 }));
 
 const StaticPageWrapper = styled("div")(() => ({
@@ -187,8 +189,6 @@ const ContentWrapper = styled("div")(() => ({
   },
 }));
 
-const ModalContainer = styled("div")(() => ({}));
-
 const IntroducePageWrapper = styled(Box)(() => ({
   width: "48%",
   marginLeft: "auto",
@@ -196,85 +196,148 @@ const IntroducePageWrapper = styled(Box)(() => ({
   height: "100vh",
   overflowY: "scroll",
 }));
+
+const backgroundCss = {
+  position: "fixed",
+  width: "100vw",
+  height: "100vh",
+  top: 0,
+  right: 0,
+  bottom: 0,
+  left: 0,
+};
+
 export default function Home() {
-  const [openIntroducePage, setOpenIntroducePage] = useState(false);
-  const [openModal, setOpenModal] = useState(false);
-  const [introRunning, setIntroRunning] = useState(true);
-  const [backgroundImageIndex, setBackgroundImageIndex] = useState(0);
-  const handleOpenModal = () => {
-    setOpenModal(true);
+  const bgImages = landingPage.media.backgroundImageLinks.length;
+  const [videoPlaying, setVideoPlaying] = useState(true);
+  const [bgImageIndex, setBgImageIndex] = useState(bgImages);
+  const [onCount, setOnCount] = useState(true);
+
+  const changeBgImageIndex = () => {
+    if (!videoPlaying)
+      setBgImageIndex((prev) => (prev + 1 >= bgImages ? 0 : prev + 1));
   };
-  const handleCloseModal = () => {
-    setOpenModal(false);
+  const handleVideoEnded = (e) => {
+    e.target.parentElement.parentElement.style.opacity = 0;
+    setTimeout(() => {
+      setVideoPlaying(false);
+    }, 2100);
+  };
+
+  const handleOpenModal = () => {
+    console.log("open modal");
   };
   const handleDisplayIntroducePage = () => {
-    setOpenIntroducePage(!openIntroducePage);
+    console.log("open introduce page");
   };
-  const changeBackgroundImageIndex = () => {
-    console.log('change');
-    setBackgroundImageIndex((prev) => {
-      return prev + 1 > landingPage.media.backgroundImageLink.length - 1
-        ? 0
-        : prev + 1;
-    });
-  };
-  return (
-    <AppContainer
-    backgroundimagelink={
-        landingPage.media.backgroundImageLink[backgroundImageIndex]
-      }
-    >
-      <Seo seo={seo} />
-      {introRunning && (
-        <BackgroundVideo
-          link={landingPage.media.videoLink}
-          autoPlay
-          onEnded={() => {
-            const initBackgroundImages = setInterval(changeBackgroundImageIndex, 1000);
-            setTimeout(() => {
-              clearInterval(initBackgroundImages);
-              setIntroRunning(false);
-              setInterval(changeBackgroundImageIndex, 5000);
-            }, 4000);
-          }}
-        />
-      )}
 
-      {!introRunning && (
-        <StaticPageWrapper>
-          <ContentWrapper>
-            <Content
-              color={"#fff"}
-              content={landingPage.content}
-              fontSize={0.5}
-              countdownTime={1000000}
-              notifyButtonFunction={handleOpenModal}
-              moreInformationButtonFunction={handleDisplayIntroducePage}
-            />
-          </ContentWrapper>
-          {openIntroducePage && (
-            <IntroducePageWrapper>
-              <IntroducePage
-                introduceContents={landingPage.introduceContents}
-                onCloseIntroducePage={handleDisplayIntroducePage}
-              />
-            </IntroducePageWrapper>
-          )}
-        </StaticPageWrapper>
-      )}
-      <ModalContainer>
-        <Modal
-          open={openModal}
-          onClose={handleCloseModal}
-          // aria-labelledby="modal-modal-title"
-          // aria-describedby="modal-modal-description"
+  useEffect(() => {
+    const changeBgImageIndexInterval = setInterval(changeBgImageIndex, 4000);
+    return () => clearInterval(changeBgImageIndexInterval);
+  }, [videoPlaying]);
+  console.log("render-app");
+  return (
+    <Box
+      className="App"
+      sx={{
+        width: "100vw",
+        height: "100vh",
+        position: "relative",
+      }}
+    >
+      <Box
+        className="buffer-bg"
+        sx={{
+          ...backgroundCss,
+          backgroundImage: `url(${landingPage.media.backgroundImageLinks[bgImageIndex]})`,
+          backgroundRepeat: "no-repeat",
+          backgroundPosition: "center",
+          backgroundSize: "cover",
+        }}
+      ></Box>
+      <Box
+        className="static-page"
+        sx={{
+          ...backgroundCss,
+          backgroundImage: `url(${
+            landingPage.media.backgroundImageLinks[
+              bgImageIndex + 1 >= bgImages ? 0 : bgImageIndex + 1
+            ]
+          })`,
+          backgroundRepeat: "no-repeat",
+          backgroundPosition: "center",
+          backgroundSize: "cover",
+          transition: "2s",
+          zIndex: 1,
+          display: "flex",
+        }}
+      >
+        <Box
+          className="content-wp"
+          sx={{
+            position: "absolute",
+            top: "50%",
+            transform: "translateY(-50%)",
+            left: "5%",
+            fontSize: "1rem",
+            "@media (max-width: 1023px)": {
+              fontSize: "0.7rem",
+            },
+            "@media (max-width:500px)": {
+              fontSize: "0.6rem",
+            },
+            "@media (max-width:300px)": {
+              fontSize: "0.35rem",
+            },
+          }}
         >
-          <SubmitPopup
-            popupContent={landingPage.popupContent}
-            closePopup={handleCloseModal}
+          {/* <MyCountdown
+            count={onCount}
+            showday
+            totalseconds={1500045}
+            myfontsize={5}
+            myweight={700}
           />
-        </Modal>
-      </ModalContainer>
-    </AppContainer>
+          <Button
+            onClick={() => {
+              setOnCount((prev) => !prev);
+            }}
+          >
+            On/Off counter
+          </Button> */}
+          <Content
+            content={landingPage.content}
+            myfontsize={1}
+            totalseconds={88400}
+            count={true}
+          />
+        </Box>
+        <Box
+          className="introduce-page-wp"
+          sx={{ flex: 1, marginLeft: "auto" }}
+        >
+        </Box>
+      </Box>
+      {videoPlaying && (
+        <Box
+          className="video-wrapper"
+          sx={{
+            position: "fixed",
+            top: "0",
+            right: "0",
+            bottom: "0",
+            left: "0",
+            zIndex: 2,
+            transition: "2s",
+          }}
+        >
+          <BackgroundVideo
+            link={landingPage.media.videoLink}
+            autoPlay
+            handleVideoEnded={handleVideoEnded}
+          />
+        </Box>
+      )}
+    </Box>
   );
 }

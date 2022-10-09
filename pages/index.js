@@ -174,8 +174,8 @@ const StaticPageWrapper = styled("div")(() => ({
 const ContentWrapper = styled("div")(() => ({
   position: "absolute",
   top: "50%",
-  transform: "translate(-50%,-50%)",
-  left: "25%",
+  transform: "translate(50%,50%)",
+  left: "50%",
   flex: 1,
   fontSize: "1rem",
   "@media (max-width: 1023px)": {
@@ -280,8 +280,8 @@ export default function Home() {
           sx={{
             position: "absolute",
             top: "50%",
-            transform: "translateY(-50%)",
-            left: "5%",
+            left: "50%",
+            transform: "translate(-50%,-50%)",
             fontSize: "1rem",
             "@media (max-width: 1023px)": {
               fontSize: "0.7rem",
@@ -310,7 +310,7 @@ export default function Home() {
           </Button> */}
           <Content
             content={landingPage.content}
-            myfontsize={1}
+            myfontsize={1.2}
             totalseconds={88400}
             count={true}
           />

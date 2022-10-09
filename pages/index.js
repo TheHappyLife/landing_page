@@ -245,6 +245,9 @@ export default function Home() {
         position: "relative",
       }}
     >
+
+      <Seo seo={seo}/>
+
       <Box
         className="buffer-bg"
         sx={{

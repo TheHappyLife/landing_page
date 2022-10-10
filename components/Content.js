@@ -10,6 +10,7 @@ const Content = ({
   moreinformationbuttonfunction,
   count,
   totalseconds = 3600,
+  enddate=[],
 }) => {
   const buttonCss = {
     borderRadius: "0px",
@@ -43,10 +44,10 @@ const Content = ({
       <MyCountdown
         count={count}
         endcountdownmessage="00:00:00:00"
-        totalseconds={totalseconds}
         myfontsize={myfontsize * 4.5}
         myweight="bold"
         mycolor={mycolor}
+        enddate={enddate}
         showday
       />
       <Text

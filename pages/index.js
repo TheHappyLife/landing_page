@@ -1,18 +1,14 @@
-import { Box, Button, Modal } from "@mui/material";
-import { styled } from "@mui/material";
+import { Box } from "@mui/material";
 import { useEffect, useState } from "react";
 import BackgroundVideo from "../components/BackgroundVideo";
 import Content from "../components/Content";
-import IntroducePage from "../components/IntroducePage";
-import SubmitPopup from "../components/SubmitPopup";
 import Seo from "../components/Seo";
-import MyCountdown from "../components/MyCountdown";
 const seo = {
   title: "Innovo | Test SEO",
   description:
     "Aenean sed mi leo. Donec mollis ut sem sed scelerisque. Sed at lorem sem. Vestibulum ornare hendrerit augue, suscipit finibus dui imperdiet ut. Quisque placerat nulla sed enim mattis aliquet. Phasellus vel nulla neque. Maecenas faucibus lectus at nunc ultricies finibus.",
   url: "https://landing-page-beige-two.vercel.app/",
-  thumbnailUrl: "https://landing-page-beige-two.vercel.app/bg1.jpg",
+  thumbnailUrl: "https://landing-page-beige-two.vercel.app/gemblockchain-io-intro-desktop.mp4",
 };
 const landingPage = {
   media: {
@@ -154,49 +150,6 @@ const landingPage = {
   },
 };
 
-const AppContainer = styled(Box)(({ backgroundimagelink }) => ({
-  position: "relative",
-  width: "100vw",
-  minHeight: "100vh",
-  backgroundImage: `url(${backgroundimagelink})`,
-  backgroundRepeat: "no-repeat",
-  backgroundSize: "cover",
-  backgroundPosition: "center",
-  // transition: '2s'
-}));
-
-const StaticPageWrapper = styled("div")(() => ({
-  width: "100vw",
-  minHeight: "100vh",
-  display: "flex",
-}));
-
-const ContentWrapper = styled("div")(() => ({
-  position: "absolute",
-  top: "50%",
-  transform: "translate(50%,50%)",
-  left: "50%",
-  flex: 1,
-  fontSize: "1rem",
-  "@media (max-width: 1023px)": {
-    fontSize: "0.7rem",
-  },
-  "@media (max-width:500px)": {
-    fontSize: "0.6rem",
-  },
-  "@media (max-width:300px)": {
-    fontSize: "0.35rem",
-  },
-}));
-
-const IntroducePageWrapper = styled(Box)(() => ({
-  width: "48%",
-  marginLeft: "auto",
-  backgroundColor: "#fff",
-  height: "100vh",
-  overflowY: "scroll",
-}));
-
 const backgroundCss = {
   position: "fixed",
   width: "100vw",
@@ -214,14 +167,16 @@ export default function Home() {
   const [onCount, setOnCount] = useState(true);
 
   const changeBgImageIndex = () => {
-    if (!videoPlaying)
+    if (!videoPlaying) {
+      console.log("change");
       setBgImageIndex((prev) => (prev + 1 >= bgImages ? 0 : prev + 1));
+    }
   };
   const handleVideoEnded = (e) => {
     e.target.parentElement.parentElement.style.opacity = 0;
     setTimeout(() => {
       setVideoPlaying(false);
-    }, 2100);
+    }, 2000);
   };
 
   const handleOpenModal = () => {
@@ -234,6 +189,7 @@ export default function Home() {
   useEffect(() => {
     const changeBgImageIndexInterval = setInterval(changeBgImageIndex, 4000);
     return () => clearInterval(changeBgImageIndexInterval);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [videoPlaying]);
   console.log("render-app");
   return (
@@ -245,8 +201,7 @@ export default function Home() {
         position: "relative",
       }}
     >
-
-      <Seo seo={seo}/>
+      <Seo seo={seo} />
 
       <Box
         className="buffer-bg"
@@ -294,32 +249,17 @@ export default function Home() {
             },
           }}
         >
-          {/* <MyCountdown
-            count={onCount}
-            showday
-            totalseconds={1500045}
-            myfontsize={5}
-            myweight={700}
-          />
-          <Button
-            onClick={() => {
-              setOnCount((prev) => !prev);
-            }}
-          >
-            On/Off counter
-          </Button> */}
           <Content
             content={landingPage.content}
             myfontsize={1.2}
-            totalseconds={88400}
             count={true}
+            enddate={[2022, 9, 12, 2, 34, 46]}
           />
         </Box>
         <Box
           className="introduce-page-wp"
           sx={{ flex: 1, marginLeft: "auto" }}
-        >
-        </Box>
+        ></Box>
       </Box>
       {videoPlaying && (
         <Box

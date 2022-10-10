@@ -1,8 +1,14 @@
 import { styled, Box } from "@mui/material";
 import { useEffect, useState } from "react";
 
+Date.prototype.distance2dates = function (date1, date2) {
+  return (
+    Math.round(date2.getTime() / 1000) - Math.round(date1.getTime() / 1000)
+  ); //(second)
+};
+
 const MyCountdown = ({
-  totalseconds = 3600,
+  enddate = [],
   endcountdownmessage = "You are good to go!",
   mycolor = "#fff",
   myfontsize = 1,
@@ -10,11 +16,18 @@ const MyCountdown = ({
   showday,
   count,
 }) => {
-  const [timeRemaining, setTimeRemaining] = useState(totalseconds);
+  const formatedEnddate = new Date(...enddate);
+  const getRemainingTime = () => {
+    const distance = Date.prototype.distance2dates(now, formatedEnddate);
+    return distance > 0 ? distance : 0;
+  };
+  const [remainingTime, setRemainingTime] = useState(0);
   useEffect(() => {
     if (count)
       var countInterval = setInterval(() => {
-        setTimeRemaining((prev) => prev - 1);
+        setRemainingTime(
+          Date.prototype.distance2dates(new Date(), formatedEnddate)
+        );
       }, 1000);
     else clearInterval(countInterval);
     return () => clearInterval(countInterval);
@@ -102,6 +115,6 @@ const MyCountdown = ({
       );
     }
   };
-  return <Countdown time={createTime(timeRemaining)} />;
+  return <Countdown time={createTime(remainingTime)} />;
 };
 export default MyCountdown;

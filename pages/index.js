@@ -164,7 +164,6 @@ export default function Home() {
   const bgImages = landingPage.media.backgroundImageLinks.length;
   const [videoPlaying, setVideoPlaying] = useState(true);
   const [bgImageIndex, setBgImageIndex] = useState(bgImages);
-  const [goCount, setGoCount] = useState(true);
 
   const changeBgImageIndex = () => {
     if (!videoPlaying) {
@@ -253,7 +252,7 @@ export default function Home() {
           <Content
             content={landingPage.content}
             myfontsize={1.2}
-            count={false}
+            count={true}
             enddate={[2022, 9, 12, 2, 34, 46]}
           />
         </Box>

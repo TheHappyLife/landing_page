@@ -8,7 +8,7 @@ const seo = {
   description:
     "Aenean sed mi leo. Donec mollis ut sem sed scelerisque. Sed at lorem sem. Vestibulum ornare hendrerit augue, suscipit finibus dui imperdiet ut. Quisque placerat nulla sed enim mattis aliquet. Phasellus vel nulla neque. Maecenas faucibus lectus at nunc ultricies finibus.",
   url: "https://landing-page-beige-two.vercel.app/",
-  thumbnailUrl: "https://landing-page-beige-two.vercel.app/gemblockchain-io-intro-desktop.mp4",
+  thumbnailUrl: "https://landing-page-beige-two.vercel.app/bg1.jpg",
 };
 const landingPage = {
   media: {
@@ -164,7 +164,7 @@ export default function Home() {
   const bgImages = landingPage.media.backgroundImageLinks.length;
   const [videoPlaying, setVideoPlaying] = useState(true);
   const [bgImageIndex, setBgImageIndex] = useState(bgImages);
-  const [onCount, setOnCount] = useState(true);
+  const [goCount, setGoCount] = useState(true);
 
   const changeBgImageIndex = () => {
     if (!videoPlaying) {
@@ -172,6 +172,7 @@ export default function Home() {
       setBgImageIndex((prev) => (prev + 1 >= bgImages ? 0 : prev + 1));
     }
   };
+
   const handleVideoEnded = (e) => {
     e.target.parentElement.parentElement.style.opacity = 0;
     setTimeout(() => {
@@ -252,7 +253,7 @@ export default function Home() {
           <Content
             content={landingPage.content}
             myfontsize={1.2}
-            count={true}
+            count={false}
             enddate={[2022, 9, 12, 2, 34, 46]}
           />
         </Box>

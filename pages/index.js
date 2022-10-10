@@ -1,8 +1,10 @@
-import { Box } from "@mui/material";
+import { Box, Modal } from "@mui/material";
 import { useEffect, useState } from "react";
 import BackgroundVideo from "../components/BackgroundVideo";
 import Content from "../components/Content";
+import IntroducePage from "../components/IntroducePage";
 import Seo from "../components/Seo";
+import SubmitPopup from "../components/SubmitPopup";
 const seo = {
   title: "Innovo | Test SEO",
   description:
@@ -39,23 +41,13 @@ const landingPage = {
         title: "Waiting here",
         description: "Donec mollis ut sem sed scelerisque. Sed at lorem sem.",
         image: "img-4.jpg",
-      },
-      {
-        title: "Waiting here",
-        description: "Donec mollis ut sem sed scelerisque. Sed at lorem sem.",
-        image: "img-4.jpg",
-      },
-      {
-        title: "Waiting here",
-        description: "Donec mollis ut sem sed scelerisque. Sed at lorem sem.",
-        image: "img-4.jpg",
-      },
+      }
     ],
     skillTitle: "Our Skills",
     skills: [
       {
         skill: "WEBDESIGN",
-        value: 97,
+        value: 93,
       },
       {
         skill: "PHOTOGRAPHY",
@@ -65,15 +57,7 @@ const landingPage = {
       {
         skill: "MARKETING",
         value: 60,
-      },
-      {
-        skill: "MARKETING",
-        value: 60,
-      },
-      {
-        skill: "MARKETING",
-        value: 60,
-      },
+      }
     ],
     contactTitle: "Contact Us",
     contacts: {
@@ -95,18 +79,6 @@ const landingPage = {
           iconSVG:
             '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><!--! Font Awesome Pro 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2022 Fonticons, Inc. --><path d="M549.655 124.083c-6.281-23.65-24.787-42.276-48.284-48.597C458.781 64 288 64 288 64S117.22 64 74.629 75.486c-23.497 6.322-42.003 24.947-48.284 48.597-11.412 42.867-11.412 132.305-11.412 132.305s0 89.438 11.412 132.305c6.281 23.65 24.787 41.5 48.284 47.821C117.22 448 288 448 288 448s170.78 0 213.371-11.486c23.497-6.321 42.003-24.171 48.284-47.821 11.412-42.867 11.412-132.305 11.412-132.305s0-89.438-11.412-132.305zm-317.51 213.508V175.185l142.739 81.205-142.739 81.201z"/></svg>',
           social: "Youtube",
-          link: "#",
-        },
-        {
-          iconSVG:
-            '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><!--! Font Awesome Pro 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2022 Fonticons, Inc. --><path d="M496 256c0 137-111 248-248 248-25.6 0-50.2-3.9-73.4-11.1 10.1-16.5 25.2-43.5 30.8-65 3-11.6 15.4-59 15.4-59 8.1 15.4 31.7 28.5 56.8 28.5 74.8 0 128.7-68.8 128.7-154.3 0-81.9-66.9-143.2-152.9-143.2-107 0-163.9 71.8-163.9 150.1 0 36.4 19.4 81.7 50.3 96.1 4.7 2.2 7.2 1.2 8.3-3.3.8-3.4 5-20.3 6.9-28.1.6-2.5.3-4.7-1.7-7.1-10.1-12.5-18.3-35.3-18.3-56.6 0-54.7 41.4-107.6 112-107.6 60.9 0 103.6 41.5 103.6 100.9 0 67.1-33.9 113.6-78 113.6-24.3 0-42.6-20.1-36.7-44.8 7-29.5 20.5-61.3 20.5-82.6 0-19-10.2-34.9-31.4-34.9-24.9 0-44.9 25.7-44.9 60.2 0 22 7.4 36.8 7.4 36.8s-24.5 103.8-29 123.2c-5 21.4-3 51.6-.9 71.2C65.4 450.9 0 361.1 0 256 0 119 111 8 248 8s248 111 248 248z"/></svg>',
-          social: "Pinterest",
-          link: "#",
-        },
-        {
-          iconSVG:
-            '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><!--! Font Awesome Pro 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2022 Fonticons, Inc. --><path d="M496 256c0 137-111 248-248 248-25.6 0-50.2-3.9-73.4-11.1 10.1-16.5 25.2-43.5 30.8-65 3-11.6 15.4-59 15.4-59 8.1 15.4 31.7 28.5 56.8 28.5 74.8 0 128.7-68.8 128.7-154.3 0-81.9-66.9-143.2-152.9-143.2-107 0-163.9 71.8-163.9 150.1 0 36.4 19.4 81.7 50.3 96.1 4.7 2.2 7.2 1.2 8.3-3.3.8-3.4 5-20.3 6.9-28.1.6-2.5.3-4.7-1.7-7.1-10.1-12.5-18.3-35.3-18.3-56.6 0-54.7 41.4-107.6 112-107.6 60.9 0 103.6 41.5 103.6 100.9 0 67.1-33.9 113.6-78 113.6-24.3 0-42.6-20.1-36.7-44.8 7-29.5 20.5-61.3 20.5-82.6 0-19-10.2-34.9-31.4-34.9-24.9 0-44.9 25.7-44.9 60.2 0 22 7.4 36.8 7.4 36.8s-24.5 103.8-29 123.2c-5 21.4-3 51.6-.9 71.2C65.4 450.9 0 361.1 0 256 0 119 111 8 248 8s248 111 248 248z"/></svg>',
-          social: "Pinterest",
           link: "#",
         },
         {
@@ -164,6 +136,8 @@ export default function Home() {
   const bgImages = landingPage.media.backgroundImageLinks.length;
   const [videoPlaying, setVideoPlaying] = useState(true);
   const [bgImageIndex, setBgImageIndex] = useState(bgImages);
+  const [openModal, setOpenModal] = useState(false);
+  const [openIntroducePage, setopenIntroducePage] = useState(false);
 
   const changeBgImageIndex = () => {
     if (!videoPlaying) {
@@ -180,16 +154,21 @@ export default function Home() {
   };
 
   const handleOpenModal = () => {
-    console.log("open modal");
+    setOpenModal(true);
   };
+
+  const handleCloseModal = () => {
+    setOpenModal(false);
+  };
+
   const handleDisplayIntroducePage = () => {
-    console.log("open introduce page");
+    setopenIntroducePage((prev) => !prev);
   };
 
   useEffect(() => {
     const changeBgImageIndexInterval = setInterval(changeBgImageIndex, 4000);
     return () => clearInterval(changeBgImageIndexInterval);
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [videoPlaying]);
   console.log("render-app");
   return (
@@ -217,6 +196,7 @@ export default function Home() {
         className="static-page"
         sx={{
           ...backgroundCss,
+          display: "flex",
           backgroundImage: `url(${
             landingPage.media.backgroundImageLinks[
               bgImageIndex + 1 >= bgImages ? 0 : bgImageIndex + 1
@@ -235,8 +215,8 @@ export default function Home() {
           sx={{
             position: "absolute",
             top: "50%",
-            left: "50%",
-            transform: "translate(-50%,-50%)",
+            left: "10%",
+            transform: "translate(-10%,-50%)",
             fontSize: "1rem",
             "@media (max-width: 1023px)": {
               fontSize: "0.7rem",
@@ -254,12 +234,39 @@ export default function Home() {
             myfontsize={1.2}
             count={true}
             enddate={[2022, 9, 12, 2, 34, 46]}
+            notifybuttonfunction={handleOpenModal}
+            moreinformationbuttonfunction={handleDisplayIntroducePage}
           />
+
+          <Modal
+            open={openModal}
+            onClose={handleCloseModal}
+            aria-labelledby="modal-modal-title"
+            aria-describedby="modal-modal-description"
+          >
+            <SubmitPopup
+              popupContent={landingPage.popupContent}
+              closepopup={handleCloseModal}
+            />
+          </Modal>
         </Box>
         <Box
           className="introduce-page-wp"
-          sx={{ flex: 1, marginLeft: "auto" }}
-        ></Box>
+          sx={{
+            maxWidth: "800px",
+            position: "absolute",
+            zIndex: 3,
+            right: 0,
+            top: 0,
+          }}
+        >
+          {openIntroducePage && (
+            <IntroducePage
+              introducecontents={landingPage.introduceContents}
+              oncloseintroducepage={handleDisplayIntroducePage}
+            />
+          )}
+        </Box>
       </Box>
       {videoPlaying && (
         <Box

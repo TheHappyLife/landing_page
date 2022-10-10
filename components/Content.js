@@ -9,7 +9,6 @@ const Content = ({
   notifybuttonfunction,
   moreinformationbuttonfunction,
   count,
-  totalseconds = 3600,
   enddate=[],
 }) => {
   const buttonCss = {

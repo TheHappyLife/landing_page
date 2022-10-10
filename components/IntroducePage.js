@@ -1,12 +1,8 @@
-import { Box, styled, TextField, Button, IconButton } from "@mui/material";
+import { Box, TextField, Button, IconButton } from "@mui/material";
 import Features from "./Features";
 import React from "react";
 import { GoogleMap, LoadScript } from "@react-google-maps/api";
 import CloseIcon from "@mui/icons-material/Close";
-
-const Wrapper = styled(Box)(() => ({
-  padding: "20px",
-}));
 
 const SkillItem = ({ skill, value, height = 4 }) => {
   let skillValue = value > 100 ? 100 : value;
@@ -64,48 +60,47 @@ const SocialItem = ({ social }) => {
     </a>
   );
 };
-const containerStyle = {
-  width: "100%",
-  height: "250px",
-};
-
-const center = {
-  lat: 10.027254,
-  lng: 105.769806,
-};
 
 const MyGoogleMap = () => {
   return (
     <LoadScript googleMapsApiKey="AIzaSyA0inBpFDtOVi2C5f3q1hkltDRmCMHUkLM">
-      <GoogleMap mapContainerStyle={containerStyle} center={center} zoom={10}>
-        {/* Child components, such as markers, info windows, etc. */}
-        <></>
+      <GoogleMap
+        mapContainerStyle={{
+          width: "100%",
+          height: "250px",
+        }}
+        center={{
+          lat: 10.027254,
+          lng: 105.769806,
+        }}
+        zoom={10}
+      >
       </GoogleMap>
     </LoadScript>
   );
 };
 
-const IntroducePage = ({ introduceContents, onCloseIntroducePage }) => {
+const IntroducePage = ({ introducecontents, oncloseintroducepage }) => {
   return (
-    <Wrapper>
+    <Box sx={{ padding: "20px", backgroundColor: "#fff", overflowY: "scroll", height: '100vh' }}>
       <IconButton
-      onClick={onCloseIntroducePage}
+        onClick={oncloseintroducepage}
         sx={{
           position: "fixed",
           top: "20px",
           right: "10px",
           opacity: 0.8,
-          zIndex: 10
+          zIndex: 10,
         }}
       >
-        <CloseIcon sx={{fontSize: "40px",}} />
+        <CloseIcon sx={{ fontSize: "40px" }} />
       </IconButton>
-      <h1>{introduceContents.title}</h1>
-      <p>{introduceContents.description}</p>
-      <Features features={introduceContents.features}></Features>
+      <h1>{introducecontents.title}</h1>
+      <p>{introducecontents.description}</p>
+      <Features features={introducecontents.features}></Features>
       <Box className="skills">
-        <h1>{introduceContents.skillTitle}</h1>
-        {introduceContents.skills.map((skill, index) => (
+        <h1>{introducecontents.skillTitle}</h1>
+        {introducecontents.skills.map((skill, index) => (
           <SkillItem
             skill={skill.skill}
             value={skill.value}
@@ -114,7 +109,7 @@ const IntroducePage = ({ introduceContents, onCloseIntroducePage }) => {
         ))}
       </Box>
       <Box className="contact">
-        <h1>{introduceContents.contactTitle}</h1>
+        <h1>{introducecontents.contactTitle}</h1>
         <Box
           sx={{
             display: "flex",
@@ -122,18 +117,18 @@ const IntroducePage = ({ introduceContents, onCloseIntroducePage }) => {
         >
           <Box sx={{ width: "50%" }}>
             <h3>Address</h3>
-            <p>{introduceContents.contacts.address}</p>
+            <p>{introducecontents.contacts.address}</p>
           </Box>
           <Box sx={{ width: "50%" }}>
             <h3>Social</h3>
-            {introduceContents.contacts.socials.map((social, index) => (
+            {introducecontents.contacts.socials.map((social, index) => (
               <SocialItem social={social} key={index}></SocialItem>
             ))}
           </Box>
         </Box>
         <Box className="map">
           <h1>Map</h1>
-          <MyGoogleMap></MyGoogleMap>
+          {/* <MyGoogleMap></MyGoogleMap> */}
         </Box>
         <Box className="contactForm">
           <h1>Contact Form</h1>
@@ -150,7 +145,7 @@ const IntroducePage = ({ introduceContents, onCloseIntroducePage }) => {
                   marginRight: "10px",
                 }}
                 id="outlined-basic"
-                label={introduceContents.nameInputPlaceholder}
+                label={introducecontents.nameInputPlaceholder}
                 variant="outlined"
               />
               <TextField
@@ -158,7 +153,7 @@ const IntroducePage = ({ introduceContents, onCloseIntroducePage }) => {
                   width: `calc(50% - 5px)`,
                 }}
                 id="outlined-basic"
-                label={introduceContents.emailInputPlaceholder}
+                label={introducecontents.emailInputPlaceholder}
                 variant="outlined"
               />
             </Box>
@@ -169,7 +164,7 @@ const IntroducePage = ({ introduceContents, onCloseIntroducePage }) => {
               fullWidth
               rows={4}
               multiline
-              label={introduceContents.messageInputPlaceholder}
+              label={introducecontents.messageInputPlaceholder}
               variant="outlined"
             />
             <Button
@@ -184,12 +179,12 @@ const IntroducePage = ({ introduceContents, onCloseIntroducePage }) => {
               }}
               variant="contained"
             >
-              {introduceContents.buttonText}
+              {introducecontents.buttonText}
             </Button>
           </Box>
         </Box>
       </Box>
-    </Wrapper>
+    </Box>
   );
 };
 

@@ -3,8 +3,10 @@ import { useEffect, useState } from "react";
 import BackgroundVideo from "../components/BackgroundVideo";
 import Content from "../components/Content";
 import IntroducePage from "../components/IntroducePage";
-import Seo from "../components/Seo";
+import { DefaultSeo, NextSeo } from 'next-seo';
+import SEO from '../next-seo.config';
 import SubmitPopup from "../components/SubmitPopup";
+// import Seo from "../components/Seo"
 const seo = {
   title: "Innovo | Test SEO",
   description:
@@ -41,7 +43,7 @@ const landingPage = {
         title: "Waiting here",
         description: "Donec mollis ut sem sed scelerisque. Sed at lorem sem.",
         image: "img-4.jpg",
-      }
+      },
     ],
     skillTitle: "Our Skills",
     skills: [
@@ -57,7 +59,7 @@ const landingPage = {
       {
         skill: "MARKETING",
         value: 60,
-      }
+      },
     ],
     contactTitle: "Contact Us",
     contacts: {
@@ -180,8 +182,8 @@ export default function Home() {
         position: "relative",
       }}
     >
-      <Seo seo={seo} />
-
+      {/* <Seo seo={seo} /> */}
+      <NextSeo {...SEO} />
       <Box
         className="buffer-bg"
         sx={{

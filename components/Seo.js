@@ -3,7 +3,6 @@ const Seo = () => {
   return (
     <Head>
       <title>Landing page | Test SEO | SEO landing page | On top</title>
-      <meta prefix="og: http://ogp.me/ns#" /> 
       <meta
         name="title"
         content="Landing page | Test SEO | SEO landing page | On top"

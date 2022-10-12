@@ -6,9 +6,23 @@ const SEO = {
       url: "https://landing-page-beige-two.vercel.app/",
       title: "OG Landing page | Test SEO | SEO landing page | On top",
       description: "OG Landing page is required for each company to increase revenue",
-      images: [,
+      images: [
         {
           url: 'https://landing-page-beige-two.vercel.app/landingpage.jpg',
+          width: 900,
+          height: 800,
+          alt: 'landingpage image',
+          type: 'image/jpeg',
+        },
+        {
+          url: 'https://landing-page-beige-two.vercel.app/bg3.jpg',
+          width: 900,
+          height: 800,
+          alt: 'landingpage image',
+          type: 'image/jpeg',
+        },
+        {
+          url: 'https://landing-page-beige-two.vercel.app/bg4.jpg',
           width: 900,
           height: 800,
           alt: 'landingpage image',

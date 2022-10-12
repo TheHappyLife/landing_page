@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-img-element */
 import { Box, TextField, Button, IconButton } from "@mui/material";
 import Features from "./Features";
 import React from "react";
@@ -74,15 +75,48 @@ const MyGoogleMap = () => {
           lng: 105.769806,
         }}
         zoom={10}
-      >
-      </GoogleMap>
+      ></GoogleMap>
     </LoadScript>
   );
 };
-
+const Feature = ({ feature, indexProps }) => {
+  return (
+    <Box
+      sx={{
+        width: "calc(50% - 10px)",
+        marginLeft: indexProps % 2 !== 0 ? "10px" : 0,
+        marginRight: indexProps % 2 === 0 ? "10px" : 0,
+      }}
+    >
+      <img
+        style={{ width: "100%", height: "200px" }}
+        src={feature.image}
+        alt="Loading Image..."
+      />
+      <h3>{feature.title}</h3>
+      <div
+        style={{
+          backgroundColor: "rgb(54, 54, 54)",
+          height: "3px",
+          width: "8%",
+          borderRadius: "2px",
+        }}
+        className="under-line"
+      ></div>
+      <p>{feature.description}</p>
+    </Box>
+  );
+};
 const IntroducePage = ({ introducecontents, oncloseintroducepage }) => {
   return (
-    <Box sx={{ padding: "20px", backgroundColor: "#fff", overflowY: "scroll", height: '100vh' }}>
+    <Box
+      sx={{
+        padding: "20px",
+        backgroundColor: "#fff",
+        overflowY: "scroll",
+        height: "100vh",
+      }}
+    >
       <IconButton
         onClick={oncloseintroducepage}
         sx={{

@@ -3,17 +3,9 @@ import { useEffect, useState } from "react";
 import BackgroundVideo from "../components/BackgroundVideo";
 import Content from "../components/Content";
 import IntroducePage from "../components/IntroducePage";
-import { DefaultSeo, NextSeo } from 'next-seo';
+import { NextSeo } from 'next-seo';
 import SEO from '../next-seo.config';
 import SubmitPopup from "../components/SubmitPopup";
-// import Seo from "../components/Seo"
-const seo = {
-  title: "Innovo | Test SEO",
-  description:
-    "Aenean sed mi leo. Donec mollis ut sem sed scelerisque. Sed at lorem sem. Vestibulum ornare hendrerit augue, suscipit finibus dui imperdiet ut. Quisque placerat nulla sed enim mattis aliquet. Phasellus vel nulla neque. Maecenas faucibus lectus at nunc ultricies finibus.",
-  url: "https://landing-page-beige-two.vercel.app/",
-  thumbnailUrl: "https://landing-page-beige-two.vercel.app/bg1.jpg",
-};
 const landingPage = {
   media: {
     videoLink: "gemblockchain-io-intro-desktop.mp4",
@@ -182,7 +174,6 @@ export default function Home() {
         position: "relative",
       }}
     >
-      {/* <Seo seo={seo} /> */}
       <NextSeo {...SEO} />
       <Box
         className="buffer-bg"
@@ -235,7 +226,7 @@ export default function Home() {
             content={landingPage.content}
             myfontsize={1.2}
             count={true}
-            enddate={[2022, 9, 12, 2, 34, 46]}
+            enddate={[2022, 9, 14, 2, 34, 46]}
             notifybuttonfunction={handleOpenModal}
             moreinformationbuttonfunction={handleDisplayIntroducePage}
           />

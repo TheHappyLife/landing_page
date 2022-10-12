@@ -1,11 +1,11 @@
 const SEO = {
-    title:"Innovo | Test SEO",
-    description:"Aenean sed mi leo. Donec mollis ut sem sed scelerisque. Sed at lorem sem. Vestibulum ornare hendrerit augue, suscipit finibus dui imperdiet ut. Quisque placerat nulla sed enim mattis aliquet. Phasellus vel nulla neque. Maecenas faucibus lectus at nunc ultricies finibus.",
+    title:"Innovo | Test SEO | SEO landing page | On top",
+    description:"Innovo sed mi leo. Donec mollis ut sem sed scelerisque. Sed at lorem sem.",
     canonical:"https://landing-page-beige-two.vercel.app/",
     openGraph:{
       url: "https://landing-page-beige-two.vercel.app/",
       title: "Innovo | Test SEO",
-      description: "Aenean sed mi leo. Donec mollis ut sem sed scelerisque. Sed at lorem sem. Vestibulum ornare hendrerit augue, suscipit finibus dui imperdiet ut. Quisque placerat nulla sed enim mattis aliquet. Phasellus vel nulla neque. Maecenas faucibus lectus at nunc ultricies finibus.",
+      description: "Innovo sed mi leo. Donec mollis ut sem sed scelerisque. Sed at lorem sem.",
       images: [,
         {
           url: 'https://landing-page-beige-two.vercel.app/bg1.jpg',

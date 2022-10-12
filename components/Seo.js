@@ -1,6 +1,7 @@
+import Head from "next/head";
 const Seo = () => {
   return (
-    <>
+    <Head>
       <title>Landing page | Test SEO | SEO landing page | On top</title>
       <meta
         name="title"
@@ -12,7 +13,10 @@ const Seo = () => {
       />
 
       <meta property="og:type" content="website" />
-      <meta property="og:url" content="https://landing-page-beige-two.vercel.app/" />
+      <meta
+        property="og:url"
+        content="https://landing-page-beige-two.vercel.app/"
+      />
       <meta
         property="og:title"
         content="Landing page | Test SEO | SEO landing page | On top"
@@ -27,7 +31,10 @@ const Seo = () => {
       />
 
       <meta property="twitter:card" content="summary_large_image" />
-      <meta property="twitter:url" content="https://landing-page-beige-two.vercel.app/" />
+      <meta
+        property="twitter:url"
+        content="https://landing-page-beige-two.vercel.app/"
+      />
       <meta
         property="twitter:title"
         content="Landing page | Test SEO | SEO landing page | On top"
@@ -40,7 +47,7 @@ const Seo = () => {
         property="twitter:image"
         content="https://landing-page-beige-two.vercel.app/bg2.jpg"
       ></meta>
-    </>
+    </Head>
   );
 };
 export default Seo;

@@ -1,5 +1,4 @@
-import { Box } from "@mui/material";
-import { Button } from "@mui/material";
+import { Box, Button, styled } from "@mui/material";
 import MyCountdown from "./MyCountdown";
 
 const Content = ({
@@ -22,6 +21,7 @@ const Content = ({
       borderRadius: "10px",
     },
   };
+
 
   return (
     <Box>

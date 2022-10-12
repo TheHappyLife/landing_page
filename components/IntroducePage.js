@@ -91,7 +91,7 @@ const Feature = ({ feature, indexProps }) => {
       <img
         style={{ width: "100%", height: "200px" }}
         src={feature.image}
-        alt="Loading Image..."
+        alt="Loading landing page image..."
       />
       <h3>{feature.title}</h3>
       <div

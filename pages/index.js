@@ -10,7 +10,7 @@ import Seo from "../components/Seo";
 const landingPage = {
   media: {
     videoLink: "gemblockchain-io-intro-desktop.mp4",
-    backgroundImageLinks: ["bg1.jpg", "bg2.jpg", "bg3.jpg", "bg4.jpg"],
+    backgroundImageLinks: ["landingpage.jpg", "bg2.jpg", "bg3.jpg", "bg4.jpg"],
   },
   introduceContents: {
     title: "Welcome To Innovative Template",

@@ -23,7 +23,7 @@ const Seo = () => {
       />
       <meta
         property="og:image"
-        content="https://landing-page-beige-two.vercel.app/bg1.jpg"
+        content="https://landing-page-beige-two.vercel.app/landingpage.jpg"
       />
 
       <meta property="twitter:card" content="summary_large_image" />

@@ -6,7 +6,6 @@ import IntroducePage from "../components/IntroducePage";
 import { NextSeo } from "next-seo";
 import SEO from "../next-seo.config";
 import SubmitPopup from "../components/SubmitPopup";
-import Seo from "../components/Seo";
 const landingPage = {
   media: {
     videoLink: "gemblockchain-io-intro-desktop.mp4",
@@ -178,7 +177,6 @@ export default function Home() {
       <NextSeo
         {...SEO}
       />
-      {/* <Seo/> */}
       <Box
         className="buffer-bg"
         sx={{

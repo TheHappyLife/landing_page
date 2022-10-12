@@ -19,11 +19,11 @@ const Seo = () => {
       />
       <meta
         property="og:title"
-        content="Landing page | Test SEO | SEO landing page | On top"
+        content="OG Landing page | Test SEO | SEO landing page | On top"
       />
       <meta
         property="og:description"
-        content="Landing page is required for each company to increase revenue"
+        content="OG Landing page is required for each company to increase revenue"
       />
       <meta
         property="og:image"
@@ -37,15 +37,15 @@ const Seo = () => {
       />
       <meta
         property="twitter:title"
-        content="Landing page | Test SEO | SEO landing page | On top"
+        content="TW Landing page | Test SEO | SEO landing page | On top"
       />
       <meta
         property="twitter:description"
-        content="Landing page is required for each company to increase revenue"
+        content="TW Landing page is required for each company to increase revenue"
       />
       <meta
         property="twitter:image"
-        content="https://landing-page-beige-two.vercel.app/bg2.jpg"
+        content="https://landing-page-beige-two.vercel.app/landingpage.jpg"
       ></meta>
     </Head>
   );

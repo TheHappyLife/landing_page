@@ -21,8 +21,6 @@ const SEO = {
           alt: 'bg2',
           type: 'image/jpeg',
         },
-        { url: 'https://landing-page-beige-two.vercel.app/bg3.jpg' },
-        { url: 'https://landing-page-beige-two.vercel.app/bg4.jpg' },
       ],
       site_name: 'Home page',
     },

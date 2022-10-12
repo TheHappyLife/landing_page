@@ -175,7 +175,9 @@ export default function Home() {
         position: "relative",
       }}
     >
-      {/* <Seo/> */}
+      <NextSeo
+        {...SEO}
+      />
       <Box
         className="buffer-bg"
         sx={{

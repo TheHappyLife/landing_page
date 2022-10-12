@@ -4,14 +4,14 @@ const SEO = {
     canonical:"https://landing-page-beige-two.vercel.app/",
     openGraph:{
       url: "https://landing-page-beige-two.vercel.app/",
-      title: "Landing page | Test SEO | SEO landing page | On top",
-      description: "Landing page is required for each company to increase revenue",
+      title: "OG Landing page | Test SEO | SEO landing page | On top",
+      description: "OG Landing page is required for each company to increase revenue",
       images: [,
         {
-          url: 'https://landing-page-beige-two.vercel.app/bg1.jpg',
-          width: 800,
-          height: 600,
-          alt: 'bg1',
+          url: 'https://landing-page-beige-two.vercel.app/landingpage.jpg',
+          width: 900,
+          height: 800,
+          alt: 'landingpage image',
           type: 'image/jpeg',
         },
         {

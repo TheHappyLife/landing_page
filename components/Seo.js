@@ -45,7 +45,7 @@ const Seo = () => {
       />
       <meta
         property="twitter:image"
-        content="https://landing-page-beige-two.vercel.app/landingpage.jpg"
+        content="https://landing-page-beige-two.vercel.app/landingpage.jpg?4362984378"
       ></meta>
     </Head>
   );

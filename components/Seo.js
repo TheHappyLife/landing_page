@@ -3,6 +3,7 @@ const Seo = () => {
   return (
     <Head>
       <title>Landing page | Test SEO | SEO landing page | On top</title>
+      <meta prefix="og: http://ogp.me/ns#" /> 
       <meta
         name="title"
         content="Landing page | Test SEO | SEO landing page | On top"
@@ -47,7 +48,6 @@ const Seo = () => {
         property="twitter:image"
         content="https://landing-page-beige-two.vercel.app/landingpage.jpg?4362984378"
       ></meta>
-      <meta property="og:url" content="https://mylink.com" />
     </Head>
   );
 };

@@ -13,14 +13,7 @@ const SEO = {
           height: 800,
           alt: 'landingpage image',
           type: 'image/jpeg',
-        },
-        {
-          url: 'https://landing-page-beige-two.vercel.app/bg2.jpg',
-          width: 900,
-          height: 800,
-          alt: 'bg2',
-          type: 'image/jpeg',
-        },
+        }
       ],
       site_name: 'Home page',
     },

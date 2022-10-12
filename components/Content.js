@@ -1,4 +1,4 @@
-import { Box, styled } from "@mui/material";
+import { Box } from "@mui/material";
 import { Button } from "@mui/material";
 import MyCountdown from "./MyCountdown";
 
@@ -22,15 +22,13 @@ const Content = ({
       borderRadius: "10px",
     },
   };
-  const Text = styled("h1")(({ mysx = {} }) => ({
-    color: mycolor,
-    fontFamily: "roboto",
-    ...mysx,
-  }));
+
   return (
     <Box>
-      <Text
-        mysx={{
+      <h1
+        style={{
+          fontFamily: 'robonto',
+          color: mycolor,
           fontSize: `${myfontsize * 2}em`,
           weight: 700,
           margin: "0 0 1em 0",
@@ -39,7 +37,7 @@ const Content = ({
         <a href={"https://landing-page-beige-two.vercel.app/"}>
           {content.logo}
         </a>
-      </Text>
+      </h1>
       <MyCountdown
         count={count}
         endcountdownmessage="00:00:00:00"
@@ -49,42 +47,50 @@ const Content = ({
         enddate={enddate}
         showday
       />
-      <Text
-        mysx={{
+      <h2
+        style={{
+          fontFamily: 'robonto',
+          color: mycolor,
           fontSize: `${myfontsize * 4}em`,
           weight: 700,
           margin: "0.35em 0 0 0",
         }}
       >
         {content.title1}
-      </Text>
-      <Text
-        mysx={{
+      </h2>
+      <h2
+        style={{
+          fontFamily: 'robonto',
+          color: mycolor,
           fontSize: `${myfontsize * 4}em`,
           weight: 700,
           margin: "0.35em 0 0 0",
         }}
       >
         {content.title2}
-      </Text>
-      <Text
-        mysx={{
+      </h2>
+      <h3
+        style={{
+          fontFamily: 'robonto',
+          color: mycolor,
           fontSize: `${myfontsize * 1.2}em`,
           weight: 500,
           margin: "0 0 2em 0",
         }}
       >
         {content.reminder1}
-      </Text>
-      <Text
-        mysx={{
+      </h3>
+      <h3
+        style={{
+          fontFamily: 'robonto',
+          color: mycolor,
           fontSize: `${myfontsize * 1.2}em`,
           weight: 500,
           margin: "0 0 2em 0",
         }}
       >
         {content.reminder2}
-      </Text>
+      </h3>
 
       <Button
         onClick={notifybuttonfunction}

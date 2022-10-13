@@ -23,7 +23,6 @@ const Feature = ({ feature, indexProps }) => {
           width: "8%",
           borderRadius: "2px",
         }}
-        className="under-line"
       ></div>
       <p>{feature.description}</p>
     </Box>

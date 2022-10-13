@@ -43,7 +43,7 @@ const BackgroundVideo = ({ link, handleVideoEnded, ...videoProps }) => {
 
   useEffect(innitEventsFunction, []);
   return (
-    <Box className="video-wp">
+    <Box>
       <Video {...videoProps} muted={muted} onEnded={(e) => handleVideoEnded(e)}>
         <source src={link} />
       </Video>

@@ -101,7 +101,6 @@ const Feature = ({ feature, indexProps }) => {
           width: "8%",
           borderRadius: "2px",
         }}
-        className="under-line"
       ></div>
       <p>{feature.description}</p>
     </Box>
@@ -132,7 +131,7 @@ const IntroducePage = ({ introducecontents, oncloseintroducepage }) => {
       <h1>{introducecontents.title}</h1>
       <p>{introducecontents.description}</p>
       <Features features={introducecontents.features}></Features>
-      <Box className="skills">
+      <Box>
         <h1>{introducecontents.skillTitle}</h1>
         {introducecontents.skills.map((skill, index) => (
           <SkillItem
@@ -142,7 +141,7 @@ const IntroducePage = ({ introducecontents, oncloseintroducepage }) => {
           ></SkillItem>
         ))}
       </Box>
-      <Box className="contact">
+      <Box>
         <h1>{introducecontents.contactTitle}</h1>
         <Box
           sx={{
@@ -160,11 +159,11 @@ const IntroducePage = ({ introducecontents, oncloseintroducepage }) => {
             ))}
           </Box>
         </Box>
-        <Box className="map">
+        <Box>
           <h1>Map</h1>
           {/* <MyGoogleMap></MyGoogleMap> */}
         </Box>
-        <Box className="contactForm">
+        <Box>
           <h1>Contact Form</h1>
           <Box
             sx={{

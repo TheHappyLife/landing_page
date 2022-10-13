@@ -1,4 +1,6 @@
-import { Box, Button, styled } from "@mui/material";
+import { Box, Button } from "@mui/material";
+import Link from "next/link";
+import useTrans from "../pages/hooks/useTrans";
 import MyCountdown from "./MyCountdown";
 
 const Content = ({
@@ -10,6 +12,7 @@ const Content = ({
   count,
   enddate=[],
 }) => {
+  const trans = useTrans()
   const buttonCss = {
     borderRadius: "0px",
     fontSize: `${myfontsize}em`,
@@ -35,7 +38,7 @@ const Content = ({
         }}
       >
         <a href={"https://landing-page-beige-two.vercel.app/"}>
-          {content.logo}
+          {trans.home.title}
         </a>
       </h1>
       <MyCountdown
@@ -120,6 +123,9 @@ const Content = ({
       >
         {content.moreDetailsText}
       </Button>
+      <Link href={'/vi'}>
+      <Button>Change</Button>
+      </Link>
     </Box>
   );
 };

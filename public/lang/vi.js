@@ -1,6 +1,6 @@
-export default vi = {
+const vi = {
     home: {
-        title: 'Chào mừng tới Viblo!',
-        content: 'Bắt đầu một bài viết nào',
+        title: 'Trang đích',
     }
 }
+export default vi;

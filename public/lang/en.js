@@ -1,6 +1,6 @@
-export default en = {
+const en = {
     home: {
-        title: 'Chào mừng tới Viblo!',
-        content: 'Bắt đầu một bài viết nào',
+        title: 'Landing page',
     }
 }
+export default en;

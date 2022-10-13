@@ -167,7 +167,6 @@ export default function Home() {
   console.log("render-app");
   return (
     <Box
-      className="App"
       sx={{
         width: "100vw",
         height: "100vh",
@@ -178,7 +177,6 @@ export default function Home() {
         {...SEO}
       />
       <Box
-        className="buffer-bg"
         sx={{
           ...backgroundCss,
           backgroundImage: `url(${landingPage.media.backgroundImageLinks[bgImageIndex]})`,
@@ -188,7 +186,6 @@ export default function Home() {
         }}
       ></Box>
       <Box
-        className="static-page"
         sx={{
           ...backgroundCss,
           display: "flex",
@@ -206,7 +203,6 @@ export default function Home() {
         }}
       >
         <Box
-          className="content-wp"
           sx={{
             position: "absolute",
             top: "50%",
@@ -232,7 +228,7 @@ export default function Home() {
             notifybuttonfunction={handleOpenModal}
             moreinformationbuttonfunction={handleDisplayIntroducePage}
           />
-          <Modal
+          {/* <Modal
             open={openModal}
             onClose={handleCloseModal}
             aria-labelledby="modal-modal-title"
@@ -242,10 +238,9 @@ export default function Home() {
               popupContent={landingPage.popupContent}
               closepopup={handleCloseModal}
             />
-          </Modal>
+          </Modal> */}
         </Box>
         <Box
-          className="introduce-page-wp"
           sx={{
             maxWidth: "800px",
             position: "absolute",
@@ -264,7 +259,6 @@ export default function Home() {
       </Box>
       {videoPlaying && (
         <Box
-          className="video-wrapper"
           sx={{
             position: "fixed",
             top: "0",

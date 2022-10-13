@@ -11,7 +11,7 @@ const Video = styled("video")(() => ({
   transform: "translate3d(-50%, -50%, 0)",
 }));
 
-const volimeCss = {
+const volumeCss = {
   color: "#fff",
   fontSize: "3rem",
   opacity: "0.7",
@@ -51,8 +51,8 @@ const BackgroundVideo = ({ link, handleVideoEnded, ...videoProps }) => {
         onClick={() => setMuted(!muted)}
         sx={{ position: "absolute", right: "20px", top: "20px" }}
       >
-        {!muted && <VolumeUpIcon sx={volimeCss} />}
-        {muted && <VolumeOffIcon sx={volimeCss} />}
+        {!muted && <VolumeUpIcon sx={volumeCss} />}
+        {muted && <VolumeOffIcon sx={volumeCss} />}
       </IconButton>
     </Box>
   );

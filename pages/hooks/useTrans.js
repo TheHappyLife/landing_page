@@ -1,13 +1,13 @@
-import { useRouter } from 'next/router'
 import en from '../../public/lang/en.js'
 import vi from '../../public/lang/vi.js'
+import fr from '../../public/lang/fr.js'
+import { useRouter } from 'next/router.js'
 
 const useTrans = () => {
-    const { locale } = useRouter()
-
-    const trans = locale === 'vi' ? vi : en
-
-    return trans
+    console.log('>>>useTrans runned');
+    const router = useRouter();
+    const locales = {en, vi, fr};
+    return locales[router.locale];
 }
 
-export default useTrans
+export default useTrans;

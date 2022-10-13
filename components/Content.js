@@ -1,5 +1,5 @@
 import { Box, Button } from "@mui/material";
-import Link from "next/link";
+import { useRouter } from "next/router";
 import useTrans from "../pages/hooks/useTrans";
 import MyCountdown from "./MyCountdown";
 
@@ -10,9 +10,17 @@ const Content = ({
   notifybuttonfunction,
   moreinformationbuttonfunction,
   count,
-  enddate=[],
+  enddate = [],
 }) => {
-  const trans = useTrans()
+  const trans = useTrans();
+  const router = useRouter();
+  const locales = router.locales;
+  const changeIndex = () => {
+    return locales.indexOf(router.locale) + 1 >= locales.length
+      ? 0
+      : locales.indexOf(router.locale) + 1;
+  };
+  console.log(">>>Router: ", router);
   const buttonCss = {
     borderRadius: "0px",
     fontSize: `${myfontsize}em`,
@@ -25,12 +33,11 @@ const Content = ({
     },
   };
 
-
   return (
     <Box>
       <h1
         style={{
-          fontFamily: 'robonto',
+          fontFamily: "robonto",
           color: mycolor,
           fontSize: `${myfontsize * 2}em`,
           weight: 700,
@@ -52,7 +59,7 @@ const Content = ({
       />
       <h2
         style={{
-          fontFamily: 'robonto',
+          fontFamily: "robonto",
           color: mycolor,
           fontSize: `${myfontsize * 4}em`,
           weight: 700,
@@ -63,7 +70,7 @@ const Content = ({
       </h2>
       <h2
         style={{
-          fontFamily: 'robonto',
+          fontFamily: "robonto",
           color: mycolor,
           fontSize: `${myfontsize * 4}em`,
           weight: 700,
@@ -74,7 +81,7 @@ const Content = ({
       </h2>
       <h3
         style={{
-          fontFamily: 'robonto',
+          fontFamily: "robonto",
           color: mycolor,
           fontSize: `${myfontsize * 1.2}em`,
           weight: 500,
@@ -85,7 +92,7 @@ const Content = ({
       </h3>
       <h3
         style={{
-          fontFamily: 'robonto',
+          fontFamily: "robonto",
           color: mycolor,
           fontSize: `${myfontsize * 1.2}em`,
           weight: 500,
@@ -123,9 +130,13 @@ const Content = ({
       >
         {content.moreDetailsText}
       </Button>
-      <Link href={'/vi'}>
-      <Button>Change</Button>
-      </Link>
+      <Button
+        onClick={() => {
+          router.push("/", "/", { locale: locales[changeIndex()] });
+        }}
+      >
+        Change
+      </Button>
     </Box>
   );
 };
